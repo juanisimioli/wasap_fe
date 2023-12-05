@@ -27,9 +27,8 @@ const Chat = () => {
         console.log(groupedChat.date);
 
         return (
-          <>
+          <div key={`xxx_${i}`}>
             <div
-              key={`xxx_${i}`}
               style={{
                 display: "flex",
                 flexDirection: "column",
@@ -38,8 +37,8 @@ const Chat = () => {
             >
               <DateOnChat date={groupedChat.date} />
             </div>
-            {groupedChat.groups?.map((gr) => (
-              <div style={{ marginBottom: 12 }}>
+            {groupedChat.groups?.map((gr, index) => (
+              <div style={{ marginBottom: 12 }} key={`gorupBubble_${index}`}>
                 {gr.map(({ msg, sender, time }, index) => (
                   <Bubble
                     key={`bubble_${index}`}
@@ -52,7 +51,7 @@ const Chat = () => {
                 ))}
               </div>
             ))}
-          </>
+          </div>
         );
       })}
     </div>
