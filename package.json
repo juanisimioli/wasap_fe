@@ -1,5 +1,5 @@
 {
-  "name": "yimail",
+  "name": "wasap",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^18",
-    "react-dom": "^18",
-    "next": "14.0.3"
+    "@emotion/cache": "^11.11.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@metamask/detect-provider": "^2.0.0",
+    "@mui/icons-material": "^5.14.13",
+    "@mui/material": "^5.14.16",
+    "eslint": "8.49.0",
+    "eslint-config-next": "13.4.19",
+    "@metamask/eth-sig-util": "^7.0.1",
+    "ethers": "^6.9.0",
+    "next": "14.0.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "tss-react": "^4.9.3"
   },
   "devDependencies": {
     "eslint": "^8",
