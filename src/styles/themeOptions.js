@@ -3,6 +3,7 @@ const themeOptions = {
     background: {
       chat: "#0B141A",
       action: "#202C33",
+      contacts: "#111B21",
     },
     input: {
       background: "#2a3942",

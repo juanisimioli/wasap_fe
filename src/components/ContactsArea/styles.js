@@ -3,16 +3,17 @@ import { makeStyles } from "tss-react/mui";
 const useStyles = makeStyles()((theme) => ({
   container: {
     height: "100vh",
-    width: "100%",
     position: "relative",
   },
 
   content: {
     display: "flex",
-    flexFlow: "column",
+    flexDirection: "column",
     height: "100%",
-    backgroundColor: theme.palette.background.chat,
+    backgroundColor: theme.palette.background.contacts,
     position: "relative",
+    width: 380,
+    borderRight: "1px solid rgba(134,150,160,0.15)",
   },
 }));
 

@@ -1,11 +1,11 @@
 // WED
-// flecha para ir abajo de todos los mensajes
+// lista de contactos
 // avatar with name. Edit name?
-// type a message as textarea ?
 // save avatar on ipfs
 
+// THU
+
 // FRI
-// lista de contactos
 
 // SAT
 // sonido al recibir mensajes
@@ -23,6 +23,8 @@
 // encrypt messages
 // tests
 // send/receive ether
+// scroll down when enter chat
+// type a message as textarea ?
 
 export const mockedMessages = [
   {
