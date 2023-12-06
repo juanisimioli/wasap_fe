@@ -18,10 +18,13 @@ const useStyles = makeStyles()((theme, { isSender, isFirstMsgGroup }) => ({
     backgroundColor: isSender
       ? theme.palette.bubble.backgroundSender
       : theme.palette.bubble.backgroundReceiver,
-    width: "auto",
-    padding: "6px 7px 8px 9px",
+    padding: "6px 12px 8px 12px",
     maxWidth: "75%",
-    borderRadius: isSender ? "7px 0px 7px 7px" : "0px 7px 7px 7px",
+    borderRadius: isFirstMsgGroup
+      ? isSender
+        ? "7px 0px 7px 7px"
+        : "0px 7px 7px 7px"
+      : "7px",
     margin: isFirstMsgGroup ? 0 : "0 8px",
     display: "flex",
     gap: 6,
@@ -36,6 +39,7 @@ const useStyles = makeStyles()((theme, { isSender, isFirstMsgGroup }) => ({
   },
 
   time: {
+    position: "relative",
     fontSize: 11,
     color: theme.palette.bubble.text,
     margin: 0,
@@ -48,7 +52,7 @@ const useStyles = makeStyles()((theme, { isSender, isFirstMsgGroup }) => ({
     fontSize: 17,
     alignSelf: "end",
     marginLeft: -2,
-    marginBottom: -3,
+    marginBottom: -5,
     opacity: 0.68,
   },
 }));

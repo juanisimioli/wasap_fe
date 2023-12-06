@@ -14,16 +14,23 @@ const Bubble = ({ message, time, status, isSender, isFirstMsgGroup }) => {
   const renderStatus = () => {
     if (!isSender) return null;
 
+    let icon;
+
     switch (status) {
       case STATUS_MESSAGE.Sending:
-        return <Sending className={classes.status} />;
+        icon = <Sending className={classes.status} />;
+        break;
       case STATUS_MESSAGE.Sent:
-        return <Sent className={classes.status} />;
+        icon = <Sent className={classes.status} />;
+        break;
       case STATUS_MESSAGE.Delivered:
-        return <Delivered className={classes.status} />;
+        icon = <Delivered className={classes.status} />;
+        break;
       default:
-        return null;
+        icon = null;
     }
+
+    return <div className={classes.status}>{icon}</div>;
   };
 
   return (

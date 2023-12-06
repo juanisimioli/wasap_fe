@@ -1,60 +1,73 @@
+"use client";
 import Bubble from "@/components/ChatArea/Bubble/Bubble";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useStyles } from "./styles";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import DateOnChat from "../DateOnChat/DateOnChat";
+import FabGoToBottom from "../FabGoToBottom/FabGoToBottom";
+
+const userAddress = "0x01"; // TODO: remove hardcoded data
 
 const Chat = () => {
   const { classes } = useStyles();
-  const ref = useRef(null);
-
   const { chat } = useWasapContext();
-
-  const scrollToLastFruit = () => {
-    const lastChildElement = ref.current?.lastElementChild;
-    lastChildElement?.scrollIntoView();
-  };
+  const [isScrolledToBottom, SetIsScrolledToBottom] = useState(null);
+  const chatRef = useRef(null);
 
   useEffect(() => {
-    scrollToLastFruit();
+    // Scroll to the bottom of the specific div
+    if (chatRef.current) {
+      goToBottom();
+    }
   }, []);
 
-  const userAddress = "0x01"; // TODO: traer de metamask
+  const checkHeight = () => {
+    const isBottom =
+      (chatRef.current.scrollHeight - chatRef.current.clientHeight) * 0.95 <
+      chatRef.current.scrollTop;
+
+    if (isBottom) SetIsScrolledToBottom(true);
+    if (!isBottom && isScrolledToBottom) SetIsScrolledToBottom(false);
+  };
+
+  const goToBottom = () => {
+    chatRef.current.scrollTop = chatRef.current.scrollHeight;
+  };
 
   return (
-    <div ref={ref} className={classes.chat}>
-      {chat.map((groupedChat, i) => {
-        console.log(groupedChat.date);
+    <>
+      <div ref={chatRef} onScroll={checkHeight} className={classes.chat}>
+        {chat.map((messagesGroupedByDate, idx) => (
+          <div key={`msgsByDate_${idx}`}>
+            <DateOnChat date={messagesGroupedByDate.date} />
 
-        return (
-          <div key={`xxx_${i}`}>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-              }}
-            >
-              <DateOnChat date={groupedChat.date} />
-            </div>
-            {groupedChat.groups?.map((gr, index) => (
-              <div style={{ marginBottom: 12 }} key={`gorupBubble_${index}`}>
-                {gr.map(({ msg, sender, time }, index) => (
-                  <Bubble
-                    key={`bubble_${index}`}
-                    message={msg}
-                    isSender={sender === userAddress}
-                    isFirstMsgGroup={!index}
-                    time={time}
-                    status={sender === userAddress ? 2 : null}
-                  />
-                ))}
-              </div>
-            ))}
+            {messagesGroupedByDate.groups?.map(
+              (messagesGroupedByContiguousSender, idx) => (
+                <div className={classes.groupSender} key={`groupBubble_${idx}`}>
+                  {messagesGroupedByContiguousSender.map(
+                    ({ msg, sender, time }, idx) => (
+                      <Bubble
+                        key={`bubble_${idx}`}
+                        message={msg}
+                        isSender={sender === userAddress}
+                        isFirstMsgGroup={!idx}
+                        time={time}
+                        status={sender === userAddress ? 2 : null}
+                      />
+                    )
+                  )}
+                </div>
+              )
+            )}
           </div>
-        );
-      })}
-    </div>
+        ))}
+      </div>
+
+      <FabGoToBottom
+        handleClick={goToBottom}
+        isScrolledToBottom={isScrolledToBottom}
+      />
+    </>
   );
 };
 

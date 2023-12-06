@@ -1,14 +1,6 @@
 // WED
-// order left or right (is sender or receiver)
-// hasta 70 % de width
-// date on chat
-// margin, borders, radius bubles
-// groupAdjacentUserMsgs
-// groupMsgsByDate
 // flecha para ir abajo de todos los mensajes
-// double tick or fail
 // avatar with name. Edit name?
-// wrap text on bubble
 // type a message as textarea ?
 // save avatar on ipfs
 

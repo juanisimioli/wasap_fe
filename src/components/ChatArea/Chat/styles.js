@@ -15,6 +15,10 @@ const useStyles = makeStyles()((theme) => ({
       background: theme.palette.scrollbar.color,
     },
   },
+
+  groupSender: {
+    marginBottom: 12,
+  },
 }));
 
 export { useStyles };
