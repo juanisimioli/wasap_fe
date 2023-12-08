@@ -12,6 +12,8 @@ const useStyles = makeStyles()((theme) => ({
     alignItems: "center",
     padding: "0 16px",
     height: 60,
+    justifyContent: "space-between",
+    paddingRight: 20,
   },
 
   avatar: {
@@ -20,6 +22,16 @@ const useStyles = makeStyles()((theme) => ({
     width: 40,
     height: 40,
     marginRight: 15,
+  },
+
+  addIcon: {
+    color: theme.palette.input.send,
+    cursor: "pointer",
+    marginTop: 6,
+
+    svg: {
+      fontSize: 30,
+    },
   },
 }));
 

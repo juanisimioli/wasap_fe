@@ -10,6 +10,7 @@ const themeOptions = {
       placeholder: "#83939D",
       color: "#FBFEFF",
       send: "#798891",
+      title: "#D9DEE0",
     },
     bubble: {
       backgroundSender: "#005c4b",
@@ -18,6 +19,9 @@ const themeOptions = {
     },
     scrollbar: {
       color: "#79889155",
+    },
+    error: {
+      main: "#ED5A6B",
     },
   },
 };

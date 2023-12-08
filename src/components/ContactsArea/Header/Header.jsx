@@ -1,5 +1,6 @@
 import { useStyles } from "./styles";
 import Image from "next/image";
+import { Add, Edit } from "@mui/icons-material";
 
 const Header = () => {
   const { classes } = useStyles();
@@ -10,7 +11,9 @@ const Header = () => {
         <div className={classes.avatar}>
           <Image src={"/juani.png"} width={40} height={40} alt="avatar" />
         </div>
-        <div>I</div>
+        <div className={classes.addIcon}>
+          <Add />
+        </div>
       </div>
     </header>
   );

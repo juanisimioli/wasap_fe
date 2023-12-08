@@ -12,7 +12,7 @@ const useStyles = makeStyles()((theme) => ({
     height: "100%",
     backgroundColor: theme.palette.background.contacts,
     position: "relative",
-    width: 380,
+    width: 400,
     borderRight: "1px solid rgba(134,150,160,0.15)",
   },
 }));

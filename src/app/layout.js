@@ -11,8 +11,9 @@ export const work_sans = Work_Sans({
 });
 
 export const metadata = {
-  title: "wasap",
-  description: "Send secure emails over web 3",
+  title: "Wasap",
+  description:
+    "Quickly send and receive Wasap messages right from your computer.",
 };
 
 export default function RootLayout({ children }) {
