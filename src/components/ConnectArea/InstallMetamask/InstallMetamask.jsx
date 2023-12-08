@@ -11,7 +11,12 @@ const InstallMetamask = () => {
         target="_blank"
         href="https://metamask.io/"
       >
-        <Image width={30} height={30} src="/metamask-icon.svg" />
+        <Image
+          width={30}
+          height={30}
+          src="/metamask-icon.svg"
+          alt="metamask icon"
+        />
         Install
       </Link>
       <p className={classes.text}>You must have Metamask extension installed</p>

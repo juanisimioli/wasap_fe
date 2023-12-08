@@ -10,7 +10,12 @@ const ConnectWallet = () => {
   return (
     <div className={classes.container}>
       <button onClick={connectMetaMask} className={classes.button}>
-        <Image width={30} height={30} src="/metamask-icon.svg" />
+        <Image
+          width={30}
+          height={30}
+          src="/metamask-icon.svg"
+          alt="metamask icon"
+        />
         Connect
       </button>
       <p className={classes.text}>Connect your wallet</p>

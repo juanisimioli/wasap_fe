@@ -10,8 +10,11 @@ const RegisterUser = () => {
     <div>
       <div>Register</div>
       <p>
-        Your current balance is 0 ETH. You can use this faucet to obtain some
-        free ETH "https://sepoliafaucet.com/"
+        Your current balance is 0 ETH. You can use this{" "}
+        <a target="_blank" href="https://sepoliafaucet.com/">
+          faucet
+        </a>{" "}
+        to obtain some free ETH
         {balance}
       </p>
 
