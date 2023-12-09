@@ -1,6 +1,14 @@
 import { useStyles } from "./styles";
 
-const Input = ({ value, onChange, placeholder, width, error, fontSize }) => {
+const Input = ({
+  value,
+  onChange,
+  placeholder,
+  width,
+  error,
+  fontSize,
+  maxLength,
+}) => {
   const { classes } = useStyles({ width, fontSize });
 
   return (
@@ -9,6 +17,7 @@ const Input = ({ value, onChange, placeholder, width, error, fontSize }) => {
       placeholder={placeholder}
       onChange={onChange}
       value={value}
+      maxLength={maxLength}
     />
   );
 };

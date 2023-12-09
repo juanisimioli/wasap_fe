@@ -1,27 +1,27 @@
 "use client";
+import { useEffect, useState } from "react";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import { useStyles } from "./styles";
-import Image from "next/image";
-import { useState } from "react";
-import { CircularProgress } from "@mui/material";
+import Input from "@/components/Utils/Input/Input";
+import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 
 const RegisterUser = () => {
-  const { classes } = useStyles();
+  const [isUploading, seIisUploading] = useState(false);
+  const { classes } = useStyles({ isUploading });
   const { wallet } = useMetamaskContext();
   const { address, balance } = wallet;
-
-  // example image hash uploaded
-  const avatar = "QmT9RRYnUsEdjwtqKGtDCscHK6XGC8xS6jJfp4iw36doM5";
-
-  const [file, setFile] = useState("");
+  const [isZeroBalance, setIsZeroBalance] = useState(false);
+  // cid => content identifier IPFS
   const [cid, setCid] = useState("");
-  const [uploading, setUploading] = useState(false);
+  const [name, setName] = useState("");
+  const [isTouched, setIsTouched] = useState(false);
+  const [error, setError] = useState("");
 
-  const onSubmit = async (e) => {
-    setUploading(true);
-    e.preventDefault();
-
+  const uploadFile = async (file) => {
+    setError("");
+    seIisUploading(true);
     if (!file) return;
+    if (file?.size > 205000) setError("Image must be lower than 200kb");
 
     try {
       const data = new FormData();
@@ -38,54 +38,72 @@ const RegisterUser = () => {
 
       if (!res.ok) throw new Error(await res.text());
     } catch (e) {
+      // TODO: handle this
       console.error(e);
     } finally {
-      setUploading(false);
+      seIisUploading(false);
     }
   };
 
+  const registerUser = (name, cid, address) => {
+    console.log("REGISTER USER", { name, cid, address });
+  };
+
+  const handleChangeName = ({ target }) => {
+    const { value } = target;
+    setError(value.length === 0 ? "You must provide a name" : "");
+    setName(value);
+  };
+
+  const handleRegisterUser = () => {
+    if (!isTouched) setIsTouched(true);
+    registerUser(name, cid, address);
+  };
+
+  useEffect(() => {
+    setIsZeroBalance(Number(balance) === 0);
+  }, [balance]);
+
   return (
-    <div>
-      <div>Register</div>
-      <p>
-        Your current balance is 0 ETH. You can use this{" "}
-        <a target="_blank" href="https://sepoliafaucet.com/">
-          faucet
-        </a>{" "}
-        to obtain some free ETH
-        {balance}
-      </p>
+    <div className={classes.container}>
+      <h1 className={classes.title}>Register</h1>
 
-      <form onSubmit={onSubmit}>
-        <input
-          type="file"
-          name="file"
-          onChange={(e) => setFile(e.target.files?.[0])}
+      <p className={classes.address}>{address}</p>
+
+      <AvatarEdit
+        isUploading={isUploading}
+        cid={cid}
+        onEditAvatar={uploadFile}
+      />
+
+      <div>
+        <Input
+          value={name}
+          onChange={handleChangeName}
+          placeholder="Your name"
+          maxLength={25}
+          width={250}
         />
-        <input type="submit" value="upload" />
-      </form>
+        <p className={classes.error}>{error}</p>
+      </div>
 
-      <p>{address}</p>
-      <p>
-        Image will be uploaded on IPFS (InterPlanetary File System) and will
-        remain there for the rest of your life.
-        https://docs.ipfs.tech/concepts/what-is-ipfs/
-      </p>
-      <input placeholder="name" />
-
-      {uploading && <CircularProgress size={24} className={classes.loader} />}
-
-      {cid && (
-        <div className={classes.avatar}>
-          <Image
-            src={`${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${cid}?pinataGatewayToken=${process.env.NEXT_PUBLIC_GATEWAY_TOKEN}`}
-            width={40}
-            height={40}
-            alt="avatar"
-          />
-        </div>
+      {isZeroBalance && (
+        <p className={classes.errorZeroTokens}>
+          Your current balance is 0.
+          <br />
+          <a target="_blank" href="https://sepoliafaucet.com/">
+            Click HERE to obtain free tokens
+          </a>
+        </p>
       )}
-      <button>Register</button>
+
+      <button
+        className={classes.button}
+        disabled={error || name.length === 0 || isZeroBalance}
+        onClick={handleRegisterUser}
+      >
+        Register
+      </button>
     </div>
   );
 };

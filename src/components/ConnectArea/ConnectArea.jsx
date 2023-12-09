@@ -2,21 +2,21 @@ import { useStyles } from "./styles";
 import InstallMetamask from "./InstallMetamask/InstallMetamask";
 import ConnectWallet from "./ConnectWallet/ConnectWallet";
 import UseValidNetwork from "./UseValidNetwork/UseValidNetwork";
-import useMetamask from "@/hooks/useMetamask";
 import RegisterUser from "./RegisterUser/RegisterUser";
+import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 
 const ConnectArea = () => {
   const { classes } = useStyles();
 
-  const { isMetamask, isConnecting } = useMetamask();
+  const { isMetamask, isConnecting } = useMetamaskContext();
 
   return (
     <div>
       <div className={classes.background} />
       <div className={classes.content}>
-        {!false && <InstallMetamask />}
+        {/* {!false && <InstallMetamask />}
         {!false && <ConnectWallet />}
-        {!false && <UseValidNetwork />}
+        {!false && <UseValidNetwork />} */}
         {!false && <RegisterUser />}
       </div>
     </div>
@@ -25,6 +25,8 @@ const ConnectArea = () => {
     //   <p>dApp for educational & learning purposes</p>
     //   <p>{JSON.stringify({ isMetamask, isConnecting })}</p>
     // </div>
+
+    // ADD REPO AND LINKEDIN
   );
 };
 

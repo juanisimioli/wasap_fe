@@ -49,7 +49,6 @@ const AddUser = () => {
 
   const validateAddress = () => {
     const isValid = isAddress(addressNewContact);
-    console.log({ isValid, addressNewContact });
     setIsValidAddress(isValid);
   };
 

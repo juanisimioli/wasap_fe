@@ -1,12 +1,66 @@
 import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => ({
-  avatar: {
-    borderRadius: "50%",
-    overflow: "hidden",
-    width: 40,
-    height: 40,
-    marginRight: 15,
+  container: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 16,
+  },
+
+  title: {
+    margin: 0,
+    color: theme.palette.bubble.text,
+  },
+
+  address: {
+    color: theme.palette.bubble.text,
+    margin: "12px 0 0 0",
+  },
+
+  error: {
+    margin: "8px 0 0 0",
+    color: theme.palette.error.main,
+    textAlign: "center",
+  },
+
+  errorZeroTokens: {
+    color: theme.palette.error.main,
+    textAlign: "center",
+    margin: 0,
+    "& a": {
+      all: "unset",
+      fontWeight: 500,
+      color: theme.palette.bubble.text,
+      cursor: "pointer",
+
+      "&:hover": {
+        color: theme.palette.bubble.backgroundSender,
+      },
+    },
+  },
+
+  button: {
+    all: "unset",
+    color: theme.palette.input.title,
+    backgroundColor: theme.palette.bubble.backgroundSender,
+    padding: "5px 15px",
+    borderRadius: "8px",
+    fontSize: 14,
+    cursor: "pointer",
+    fontWeight: 600,
+    display: "flex",
+    alignItems: "center",
+    gap: 16,
+    padding: 15,
+
+    "&:disabled": {
+      backgroundColor: "grey",
+    },
+
+    "&:hover:enabled": {
+      color: theme.palette.input.color,
+    },
   },
 }));
 
