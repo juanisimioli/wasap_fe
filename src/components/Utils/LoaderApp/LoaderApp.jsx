@@ -6,7 +6,13 @@ const LoaderApp = () => {
   const { classes } = useStyles();
   return (
     <div className={classes.container}>
-      <Image src="/wasap-3-logo.png" width={45} height={45} />
+      <Image
+        src="/wasap-3-logo.png"
+        width={45}
+        height={45}
+        alt="wasap logo"
+        priority
+      />
       <LinearProgress className={classes.loader} />
     </div>
   );

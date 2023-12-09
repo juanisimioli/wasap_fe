@@ -8,7 +8,13 @@ const InstallMetamask = () => {
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>
-        Wasap <Image src="/wasap-3-logo.png" width={35} height={35} />
+        Wasap{" "}
+        <Image
+          src="/wasap-3-logo.png"
+          width={35}
+          height={35}
+          alt="wasap logo"
+        />
       </h1>
       <Link
         className={classes.button}

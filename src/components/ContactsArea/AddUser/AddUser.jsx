@@ -113,6 +113,7 @@ const AddUser = () => {
               width={40}
               height={40}
               alt="avatar"
+              priority
             />
           </div>
           <Input

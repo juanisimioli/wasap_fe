@@ -71,7 +71,14 @@ const RegisterUser = () => {
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>
-        Register Wasap <Image src="/wasap-3-logo.png" width={35} height={35} />
+        Register Wasap{" "}
+        <Image
+          src="/wasap-3-logo.png"
+          width={35}
+          height={35}
+          alt="wasap logo"
+          priority
+        />
       </h1>
 
       <p className={classes.address}>{address}</p>

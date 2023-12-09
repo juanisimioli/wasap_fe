@@ -11,7 +11,14 @@ const ConnectWallet = () => {
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>
-        Wasap <Image src="/wasap-3-logo.png" width={35} height={35} />
+        Wasap{" "}
+        <Image
+          src="/wasap-3-logo.png"
+          width={35}
+          height={35}
+          alt="wasap logo"
+          priority
+        />
       </h1>
       <button onClick={connectMetaMask} className={classes.button}>
         <Image

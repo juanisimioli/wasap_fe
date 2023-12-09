@@ -20,7 +20,7 @@ const useStyles = makeStyles()((theme) => ({
   list: {},
 
   legal: {
-    color: theme.palette.bubble.text,
+    color: theme.palette.scrollbar.color,
     fontSize: 13,
     padding: "8px",
     width: "90%",

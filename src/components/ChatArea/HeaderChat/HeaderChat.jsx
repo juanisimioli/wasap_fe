@@ -7,7 +7,13 @@ const HeaderChat = () => {
   return (
     <header className={classes.header}>
       <div className={classes.avatar}>
-        <Image src={"/default-user.svg"} width={40} height={40} alt="avatar" />
+        <Image
+          src={"/default-user.svg"}
+          width={40}
+          height={40}
+          alt="avatar"
+          priority
+        />
       </div>
       <p className={classes.name}>Juani Simioli</p>
     </header>
