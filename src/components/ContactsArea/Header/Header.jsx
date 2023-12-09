@@ -9,7 +9,12 @@ const Header = () => {
     <header className={classes.header}>
       <div className={classes.content}>
         <div className={classes.avatar}>
-          <Image src={"/juani.png"} width={40} height={40} alt="avatar" />
+          <Image
+            src={"/default-user.svg"}
+            width={40}
+            height={40}
+            alt="avatar"
+          />
         </div>
         <div className={classes.addIcon}>
           <Add />

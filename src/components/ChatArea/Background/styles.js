@@ -9,7 +9,7 @@ const useStyles = makeStyles()((theme) => ({
     left: 0,
     opacity: 0.06,
     zIndex: 0,
-    backgroundImage: "url(/chat_background.png)",
+    backgroundImage: "url(/chat-background.png)",
   },
 }));
 

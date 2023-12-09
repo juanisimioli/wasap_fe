@@ -6,9 +6,9 @@ import ContactsArea from "@/components/ContactsArea/ContactsArea";
 export default function Home() {
   return (
     <div style={{ display: "flex" }}>
-      <ConnectArea />
-      {/* <ContactsArea />
-      <ChatArea /> */}
+      {/* <ConnectArea /> */}
+      <ContactsArea />
+      <ChatArea />
     </div>
   );
 }

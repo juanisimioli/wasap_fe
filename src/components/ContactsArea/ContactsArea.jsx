@@ -9,9 +9,9 @@ const ContactsArea = () => {
   return (
     <div className={classes.container}>
       <div className={classes.content}>
-        {/* <Header /> */}
-        {/* <ContactList /> */}
-        <AddUser />
+        <Header />
+        <ContactList />
+        {/* <AddUser /> */}
       </div>
     </div>
   );

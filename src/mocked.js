@@ -1,31 +1,3 @@
-// WED
-// lista de contactos
-// avatar with name. Edit name?
-// save avatar on ipfs
-
-// THU
-
-// FRI
-
-// SAT
-// sonido al recibir mensajes
-// silenciar contacto
-// silenciar todo
-
-// DOM
-// registrarte
-
-// MON
-// invite friends
-
-// TUE
-// proxy contract
-// encrypt messages
-// tests
-// send/receive ether
-// scroll down when enter chat
-// type a message as textarea ?
-
 export const mockedMessages = [
   {
     timestamp: 1701600938,

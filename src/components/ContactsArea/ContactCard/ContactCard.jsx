@@ -8,7 +8,12 @@ const ContactCard = ({ avatar, name, address = "0x000001" }) => {
     <div className={classes.container}>
       <div>
         <div className={classes.avatar}>
-          <Image src={"/juani.png"} width={49} height={49} alt="avatar" />
+          <Image
+            src={"/default-user.svg"}
+            width={49}
+            height={49}
+            alt="avatar"
+          />
         </div>
       </div>
       <div className={classes.info}>
