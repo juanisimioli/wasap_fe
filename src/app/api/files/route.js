@@ -58,6 +58,7 @@ export async function POST(request, res) {
     return NextResponse.json({ success: true, ipfsHash: IpfsHash });
   } catch (e) {
     console.log(e);
+    // TODO: handle this error
     return NextResponse.json({ success: false });
   }
 }
