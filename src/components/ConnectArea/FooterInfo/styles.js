@@ -5,7 +5,8 @@ const useStyles = makeStyles()((theme) => ({
     color: theme.palette.input.placeholder,
     gap: 10,
     display: "flex",
-    marginTop: 10,
+    position: "absolute",
+    bottom: 14,
 
     "& svg": {
       color: theme.palette.input.placeholder,

@@ -7,6 +7,7 @@ const useStyles = makeStyles()((theme) => ({
     justifyContent: "center",
     alignItems: "center",
     gap: 36,
+    minHeight: 240,
   },
 
   title: {

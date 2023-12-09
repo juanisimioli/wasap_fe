@@ -5,8 +5,8 @@ const useStyles = makeStyles()((theme) => ({
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    gap: 16,
-    minHeight: 442,
+    gap: 20,
+    minHeight: 440,
   },
 
   title: {

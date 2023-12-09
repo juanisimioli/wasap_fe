@@ -14,7 +14,7 @@ const useStyles = makeStyles()((theme) => ({
   content: {
     backgroundColor: theme.palette.background.action,
     maxWidth: 600,
-    padding: "50px 50px 10px 50px",
+    padding: "50px 50px 40px 50px",
     borderRadius: 3,
   },
 }));

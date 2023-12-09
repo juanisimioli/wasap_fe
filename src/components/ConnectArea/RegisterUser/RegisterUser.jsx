@@ -62,6 +62,8 @@ const RegisterUser = () => {
     registerUser(name, cid, address);
   };
 
+  const showRegisterButton = !error && name.length !== 0 && !isZeroBalance;
+
   useEffect(() => {
     setIsZeroBalance(Number(balance) === 0);
   }, [balance]);
@@ -91,13 +93,15 @@ const RegisterUser = () => {
         <p className={classes.error}>{error}</p>
       </div>
 
-      <button
-        className={classes.button}
-        disabled={error || name.length === 0 || isZeroBalance}
-        onClick={handleRegisterUser}
-      >
-        Register
-      </button>
+      {showRegisterButton && (
+        <button
+          className={classes.button}
+          disabled={!showRegisterButton}
+          onClick={handleRegisterUser}
+        >
+          Register
+        </button>
+      )}
 
       {isZeroBalance && (
         <p className={classes.errorZeroTokens}>
