@@ -1,6 +1,7 @@
 import { useStyles } from "./styles";
 import Image from "next/image";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
+import FooterInfo from "../FooterInfo/FooterInfo";
 
 const ConnectWallet = () => {
   const { classes } = useStyles();
@@ -22,6 +23,7 @@ const ConnectWallet = () => {
         Connect
       </button>
       <p className={classes.text}>Connect your wallet</p>
+      <FooterInfo />
     </div>
   );
 };

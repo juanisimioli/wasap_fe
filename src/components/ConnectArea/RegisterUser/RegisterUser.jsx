@@ -5,10 +5,11 @@ import { useStyles } from "./styles";
 import Input from "@/components/Utils/Input/Input";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 import Image from "next/image";
+import FooterInfo from "../FooterInfo/FooterInfo";
 
 const RegisterUser = () => {
   const [isUploading, seIisUploading] = useState(false);
-  const { classes } = useStyles({ isUploading });
+  const { classes } = useStyles();
   const { wallet } = useMetamaskContext();
   const { address, balance } = wallet;
   const [isZeroBalance, setIsZeroBalance] = useState(false);
@@ -107,6 +108,8 @@ const RegisterUser = () => {
           </a>
         </p>
       )}
+
+      <FooterInfo />
     </div>
   );
 };

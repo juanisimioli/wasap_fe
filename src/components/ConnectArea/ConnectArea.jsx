@@ -25,8 +25,6 @@ const ConnectArea = () => {
         )}
       </div>
     </div>
-    // TODO: dApp for educational & learning purposes
-    // TODO: add repo and linkedin
   );
 };
 

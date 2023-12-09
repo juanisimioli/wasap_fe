@@ -1,6 +1,7 @@
 import { useStyles } from "./styles";
 import Image from "next/image";
 import Link from "next/link";
+import FooterInfo from "../FooterInfo/FooterInfo";
 
 const InstallMetamask = () => {
   const { classes } = useStyles();
@@ -23,6 +24,7 @@ const InstallMetamask = () => {
         Install
       </Link>
       <p className={classes.text}>Metamask extension must be installed</p>
+      <FooterInfo />
     </div>
   );
 };

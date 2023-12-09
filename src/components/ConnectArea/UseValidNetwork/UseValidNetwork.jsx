@@ -1,5 +1,6 @@
 import { useStyles } from "./styles";
 import Image from "next/image";
+import FooterInfo from "../FooterInfo/FooterInfo";
 
 const UseValidNetwork = () => {
   const { classes } = useStyles();
@@ -10,6 +11,7 @@ const UseValidNetwork = () => {
         Wasap <Image src="/wasap-3-logo.png" width={35} height={35} />
       </h1>
       <p className={classes.text}>Please connect to Sepolia testnet</p>
+      <FooterInfo />
     </div>
   );
 };
