@@ -16,13 +16,15 @@
     "@metamask/eth-sig-util": "^7.0.1",
     "@mui/icons-material": "^5.14.13",
     "@mui/material": "^5.14.16",
+    "@pinata/sdk": "^2.1.0",
     "axios": "^1.6.2",
     "eslint": "8.49.0",
     "eslint-config-next": "13.4.19",
     "ethers": "^6.9.0",
-    "next": "14.0.3",
+    "next": "14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "stream": "^0.0.2",
     "tss-react": "^4.9.3"
   },
   "devDependencies": {
