@@ -6,6 +6,7 @@ const useStyles = makeStyles()((theme) => ({
     flexDirection: "column",
     alignItems: "center",
     gap: 16,
+    minHeight: 442,
   },
 
   title: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles()((theme) => ({
   address: {
     color: theme.palette.bubble.text,
     margin: "12px 0 0 0",
+    padding: 9,
   },
 
   error: {
@@ -55,7 +57,8 @@ const useStyles = makeStyles()((theme) => ({
     padding: 15,
 
     "&:disabled": {
-      backgroundColor: "grey",
+      backgroundColor: theme.palette.input.background,
+      color: theme.palette.scrollbar.color,
     },
 
     "&:hover:enabled": {

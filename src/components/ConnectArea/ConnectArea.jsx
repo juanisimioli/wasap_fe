@@ -8,25 +8,25 @@ import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 const ConnectArea = () => {
   const { classes } = useStyles();
 
-  const { isMetamask, isConnecting } = useMetamaskContext();
+  const { isMetamask, wallet, isAllowedChainId } = useMetamaskContext();
+  const { address } = wallet;
 
   return (
-    <div>
-      <div className={classes.background} />
+    <div className={classes.container}>
       <div className={classes.content}>
-        {/* {!false && <InstallMetamask />}
-        {!false && <ConnectWallet />}
-        {!false && <UseValidNetwork />} */}
-        {!false && <RegisterUser />}
+        {!isMetamask ? (
+          <InstallMetamask />
+        ) : !address ? (
+          <ConnectWallet />
+        ) : !isAllowedChainId ? (
+          <UseValidNetwork />
+        ) : (
+          <RegisterUser />
+        )}
       </div>
     </div>
-    // <div>
-    //   <h1>Use Wasap on your computer</h1>
-    //   <p>dApp for educational & learning purposes</p>
-    //   <p>{JSON.stringify({ isMetamask, isConnecting })}</p>
-    // </div>
-
-    // ADD REPO AND LINKEDIN
+    // TODO: dApp for educational & learning purposes
+    // TODO: add repo and linkedin
   );
 };
 

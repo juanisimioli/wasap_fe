@@ -4,6 +4,7 @@ import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import { useStyles } from "./styles";
 import Input from "@/components/Utils/Input/Input";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
+import Image from "next/image";
 
 const RegisterUser = () => {
   const [isUploading, seIisUploading] = useState(false);
@@ -66,7 +67,9 @@ const RegisterUser = () => {
 
   return (
     <div className={classes.container}>
-      <h1 className={classes.title}>Register</h1>
+      <h1 className={classes.title}>
+        Register Wasap <Image src="/wasap-3-logo.png" width={35} height={35} />
+      </h1>
 
       <p className={classes.address}>{address}</p>
 
@@ -87,6 +90,14 @@ const RegisterUser = () => {
         <p className={classes.error}>{error}</p>
       </div>
 
+      <button
+        className={classes.button}
+        disabled={error || name.length === 0 || isZeroBalance}
+        onClick={handleRegisterUser}
+      >
+        Register
+      </button>
+
       {isZeroBalance && (
         <p className={classes.errorZeroTokens}>
           Your current balance is 0.
@@ -96,14 +107,6 @@ const RegisterUser = () => {
           </a>
         </p>
       )}
-
-      <button
-        className={classes.button}
-        disabled={error || name.length === 0 || isZeroBalance}
-        onClick={handleRegisterUser}
-      >
-        Register
-      </button>
     </div>
   );
 };

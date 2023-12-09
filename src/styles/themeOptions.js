@@ -17,6 +17,9 @@ const themeOptions = {
       backgroundReceiver: "#202C33",
       text: "#e9edef",
     },
+    green: {
+      soft: "#A2C4BE",
+    },
     scrollbar: {
       color: "#79889155",
     },
