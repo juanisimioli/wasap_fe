@@ -10,6 +10,9 @@ const useStyles = makeStyles()((theme) => ({
 
     "& svg": {
       color: theme.palette.input.placeholder,
+      "&:hover": {
+        color: theme.palette.bubble.text,
+      },
     },
   },
 }));

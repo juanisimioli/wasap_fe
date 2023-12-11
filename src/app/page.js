@@ -1,5 +1,6 @@
 "use client";
 import ChatArea from "@/components/ChatArea/ChatArea";
+import EmptyChat from "@/components/ChatArea/EmptyChat/EmptyChat";
 import ConnectArea from "@/components/ConnectArea/ConnectArea";
 import ContactsArea from "@/components/ContactsArea/ContactsArea";
 import LoaderApp from "@/components/Utils/LoaderApp/LoaderApp";
@@ -11,6 +12,7 @@ export default function Home() {
   const { address } = wallet;
 
   const isUserRegistered = true;
+  const contactSelected = null;
 
   return (
     <div style={{ display: "flex" }}>
@@ -19,7 +21,7 @@ export default function Home() {
       ) : isMetamask && address && isAllowedChainId && isUserRegistered ? (
         <>
           <ContactsArea />
-          <ChatArea />
+          {contactSelected ? <ChatArea /> : <EmptyChat />}
         </>
       ) : (
         <ConnectArea />
