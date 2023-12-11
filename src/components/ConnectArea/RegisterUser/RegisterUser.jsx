@@ -6,9 +6,10 @@ import Input from "@/components/Utils/Input/Input";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 import Image from "next/image";
 import FooterInfo from "../FooterInfo/FooterInfo";
+import { uploadFileToIpfs } from "@/utils/ipfs";
 
 const RegisterUser = () => {
-  const [isUploading, seIisUploading] = useState(false);
+  const [isUploading, seIsUploading] = useState(false);
   const { classes } = useStyles();
   const { wallet } = useMetamaskContext();
   const { address, balance } = wallet;
@@ -21,29 +22,16 @@ const RegisterUser = () => {
 
   const uploadFile = async (file) => {
     setError("");
-    seIisUploading(true);
-    if (!file) return;
+    seIsUploading(true);
     if (file?.size > 205000) setError("Image must be lower than 200kb");
 
     try {
-      const data = new FormData();
-      data.set("file", file), { filename: file.name };
-
-      const res = await fetch("/api/files", {
-        method: "POST",
-        body: data,
-      });
-
-      const responseData = await res.json();
-
-      setCid(responseData.ipfsHash);
-
-      if (!res.ok) throw new Error(await res.text());
+      const ipfsHash = await uploadFileToIpfs(file);
+      setCid(ipfsHash);
     } catch (e) {
-      // TODO: handle this
-      console.error(e);
+      setError("Cannot update image");
     } finally {
-      seIisUploading(false);
+      seIsUploading(false);
     }
   };
 

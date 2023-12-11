@@ -10,7 +10,7 @@ export default function Home() {
     useMetamaskContext();
   const { address } = wallet;
 
-  const isUserRegistered = false;
+  const isUserRegistered = true;
 
   return (
     <div style={{ display: "flex" }}>

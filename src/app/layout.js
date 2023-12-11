@@ -22,7 +22,12 @@ export default function RootLayout({ children }) {
       <ThemeRegistry>
         <MetamaskContextProvider>
           <WasapContextProvider>
-            <body className={work_sans.className}>{children}</body>
+            <body
+              style={{ margin: 0, height: "100%", overflow: "hidden" }} // disable scroll window
+              className={work_sans.className}
+            >
+              {children}
+            </body>
           </WasapContextProvider>
         </MetamaskContextProvider>
       </ThemeRegistry>
