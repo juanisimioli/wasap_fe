@@ -7,7 +7,13 @@ const EmptyChat = () => {
 
   return (
     <div className={classes.container}>
-      <Image width={303} height={172} src="/wasap-initial.svg" />
+      <Image
+        width={303}
+        height={172}
+        src="/wasap-initial.svg"
+        alt="wasap logo"
+        priority
+      />
       <h2 className={classes.title}>Wasap Web</h2>
       <p className={classes.text}>
         Send and receive messages through blockchain

@@ -3,6 +3,7 @@ import { CircularProgress } from "@mui/material";
 import { CameraAlt } from "@mui/icons-material/";
 import { useStyles } from "./styles";
 import Image from "next/image";
+import { getUrlAvatar } from "@/utils/utils";
 
 const AvatarEdit = ({ isUploading, onEditAvatar, cid }) => {
   const inputFile = useRef(null);
@@ -17,10 +18,6 @@ const AvatarEdit = ({ isUploading, onEditAvatar, cid }) => {
   const handleAvatarChange = (e) => {
     onEditAvatar(e.target.files?.[0]);
   };
-
-  const avatarUrl = cid
-    ? `${process.env.NEXT_PUBLIC_GATEWAY_URL}/ipfs/${cid}?pinataGatewayToken=${process.env.NEXT_PUBLIC_GATEWAY_TOKEN}`
-    : "/default-user.svg";
 
   return (
     <>
@@ -43,7 +40,7 @@ const AvatarEdit = ({ isUploading, onEditAvatar, cid }) => {
             </div>
             <Image
               priority
-              src={avatarUrl}
+              src={getUrlAvatar(cid)}
               width={150}
               height={150}
               alt="avatar"

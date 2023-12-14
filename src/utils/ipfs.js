@@ -13,8 +13,6 @@ export const uploadFileToIpfs = async (file) => {
 
   setCid(responseData.ipfsHash);
 
-  console.log(res, responseData);
-
   if (!res.ok) throw new Error(await res.text());
 
   return responseData.ipfsHash;

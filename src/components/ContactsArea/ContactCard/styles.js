@@ -1,6 +1,6 @@
 import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles()((theme) => ({
+const useStyles = makeStyles()((theme, props, classes) => ({
   container: {
     width: "100%",
     height: 72,
@@ -12,13 +12,13 @@ const useStyles = makeStyles()((theme) => ({
     alignItems: "center",
     justifyContent: "space-between",
 
-    "&:hover": {
+    [`&:hover.${classes.nonSelected}`]: {
       backgroundColor: "#202C33",
     },
+  },
 
-    selected: {
-      backgroundColor: "#2A3942",
-    },
+  selected: {
+    backgroundColor: "#2A3942",
   },
 
   avatar: {

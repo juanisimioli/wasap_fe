@@ -5,14 +5,16 @@ import { useStyles } from "./styles";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import DateOnChat from "../DateOnChat/DateOnChat";
 import FabGoToBottom from "../FabGoToBottom/FabGoToBottom";
-
-const userAddress = "0x01"; // TODO: remove hardcoded data
+import { useMetamaskContext } from "@/contexts/useMetamaskContext";
+import { getAddress } from "ethers";
 
 const Chat = () => {
   const { classes } = useStyles();
   const { chat } = useWasapContext();
   const [isScrolledToBottom, SetIsScrolledToBottom] = useState(null);
   const chatRef = useRef(null);
+  const { wallet } = useMetamaskContext();
+  const { address } = wallet;
 
   useEffect(() => {
     // Scroll to the bottom of the specific div
@@ -45,14 +47,14 @@ const Chat = () => {
               (messagesGroupedByContiguousSender, idx) => (
                 <div className={classes.groupSender} key={`groupBubble_${idx}`}>
                   {messagesGroupedByContiguousSender.map(
-                    ({ msg, sender, time }, idx) => (
+                    ({ text, sender, time }, idx) => (
                       <Bubble
                         key={`bubble_${idx}`}
-                        message={msg}
-                        isSender={sender === userAddress}
+                        text={text}
+                        isSender={getAddress(sender) === getAddress(address)}
                         isFirstMsgGroup={!idx}
                         time={time}
-                        status={sender === userAddress ? 2 : null}
+                        status={sender === address ? 2 : null}
                       />
                     )
                   )}

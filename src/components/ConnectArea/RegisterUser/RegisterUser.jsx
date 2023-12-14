@@ -7,6 +7,7 @@ import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 import Image from "next/image";
 import FooterInfo from "../FooterInfo/FooterInfo";
 import { uploadFileToIpfs } from "@/utils/ipfs";
+import { useWasapContext } from "@/contexts/useWasapContext";
 
 const RegisterUser = () => {
   const [isUploading, seIsUploading] = useState(false);
@@ -19,6 +20,8 @@ const RegisterUser = () => {
   const [name, setName] = useState("");
   const [isTouched, setIsTouched] = useState(false);
   const [error, setError] = useState("");
+
+  const { createAccount } = useWasapContext();
 
   const uploadFile = async (file) => {
     setError("");
@@ -35,8 +38,8 @@ const RegisterUser = () => {
     }
   };
 
-  const registerUser = (name, cid, address) => {
-    console.log("REGISTER USER", { name, cid, address });
+  const registerUser = async (name, cid, address) => {
+    await createAccount(name, cid, setError);
   };
 
   const handleChangeName = ({ target }) => {

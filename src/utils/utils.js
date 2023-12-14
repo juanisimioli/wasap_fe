@@ -24,8 +24,10 @@ export const dateTimeInfo = (epoch) => {
 export const breakDownTimestamp = (messages) => {
   return messages.map((message) => {
     const { date, time } = dateTimeInfo(message?.timestamp);
+    const { text, sender } = message;
     return {
-      ...message,
+      text,
+      sender,
       date,
       time,
     };
@@ -76,4 +78,15 @@ export const calculateChat = (messages) => {
   return groupMessagesBySender(
     groupMessagesByDate(breakDownTimestamp(messages))
   );
+};
+
+export const shortAddress = (address) => {
+  if (!address || typeof address !== "string") return;
+  return `${address.slice(0, 6)}...${address.slice(address.length - 4)}`;
+};
+
+export const getUrlAvatar = (cid) => {
+  return cid
+    ? `${process.env.NEXT_PUBLIC_AVATAR_URL}${cid}`
+    : "/default-user.svg";
 };

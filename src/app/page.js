@@ -5,18 +5,19 @@ import ConnectArea from "@/components/ConnectArea/ConnectArea";
 import ContactsArea from "@/components/ContactsArea/ContactsArea";
 import LoaderApp from "@/components/Utils/LoaderApp/LoaderApp";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
+import { useWasapContext } from "@/contexts/useWasapContext";
 
 export default function Home() {
   const { isMetamask, isConnecting, wallet, isAllowedChainId } =
     useMetamaskContext();
   const { address } = wallet;
+  const { isUserRegistered, contactSelected } = useWasapContext();
 
-  const isUserRegistered = true;
-  const contactSelected = null;
+  // TODO: return must be something like <App />
 
   return (
     <div style={{ display: "flex" }}>
-      {isConnecting ? (
+      {isConnecting || isUserRegistered === null ? (
         <LoaderApp />
       ) : isMetamask && address && isAllowedChainId && isUserRegistered ? (
         <>

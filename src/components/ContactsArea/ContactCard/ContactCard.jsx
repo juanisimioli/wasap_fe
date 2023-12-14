@@ -1,15 +1,25 @@
+import { useWasapContext } from "@/contexts/useWasapContext";
 import { useStyles } from "./styles";
 import Image from "next/image";
+import { shortAddress, getUrlAvatar } from "@/utils/utils";
 
-const ContactCard = ({ avatar, name, address = "0x000001" }) => {
+const ContactCard = ({ avatar, name, address }) => {
   const { classes } = useStyles();
+  const { contactSelected, selectContact } = useWasapContext();
+
+  const isSelected = address === contactSelected;
 
   return (
-    <div className={classes.container}>
+    <div
+      className={`${classes.container} ${
+        isSelected ? classes.selected : classes.nonSelected
+      }`}
+      onClick={() => selectContact(address)}
+    >
       <div>
         <div className={classes.avatar}>
           <Image
-            src={"/default-user.svg"}
+            src={getUrlAvatar(avatar)}
             width={49}
             height={49}
             alt="avatar"
@@ -18,7 +28,7 @@ const ContactCard = ({ avatar, name, address = "0x000001" }) => {
       </div>
       <div className={classes.info}>
         <p className={classes.name}>{name}</p>
-        <p className={classes.address}>{address}</p>
+        <p className={classes.address}>{shortAddress(address)}</p>
       </div>
     </div>
   );

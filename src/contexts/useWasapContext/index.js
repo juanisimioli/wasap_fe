@@ -7,10 +7,30 @@ const WasapContext = createContext(null);
 WasapContext.displayName = "WasapContext";
 
 export const WasapContextProvider = ({ children }) => {
-  const { chat } = useWasap();
+  const {
+    chat,
+    createAccount,
+    isUserRegistered,
+    selectContact,
+    contactSelected,
+    contactSelectedData,
+    contactList,
+    isSendingMessage,
+    sendMessage,
+    userInfo,
+  } = useWasap();
 
   const value = {
     chat,
+    createAccount,
+    isUserRegistered,
+    selectContact,
+    contactSelected,
+    contactSelectedData,
+    contactList,
+    isSendingMessage,
+    sendMessage,
+    userInfo,
   };
 
   return (

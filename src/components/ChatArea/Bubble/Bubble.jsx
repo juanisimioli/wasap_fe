@@ -8,7 +8,7 @@ const STATUS_MESSAGE = {
   Delivered: 2,
 };
 
-const Bubble = ({ message, time, status, isSender, isFirstMsgGroup }) => {
+const Bubble = ({ text, time, status, isSender, isFirstMsgGroup }) => {
   const { classes } = useStyles({ isSender, isFirstMsgGroup });
 
   const renderStatus = () => {
@@ -42,7 +42,7 @@ const Bubble = ({ message, time, status, isSender, isFirstMsgGroup }) => {
           <TailIn className={classes.tail} />
         ))}
       <div className={classes.bubble}>
-        <p className={classes.message}>{message}</p>
+        <p className={classes.message}>{text}</p>
         <p className={classes.time}>{time}</p>
         {renderStatus()}
       </div>

@@ -69,8 +69,6 @@ const AddUser = () => {
   // Address not yet registered in our dApp
   // Error. Try again
 
-  console.log({ error });
-
   return (
     <div className={classes.container}>
       <div className={classes.titleContainer}>

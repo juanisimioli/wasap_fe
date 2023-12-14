@@ -3,11 +3,13 @@ import { useStyles } from "./styles";
 const Input = ({
   value,
   onChange,
+  onKeyDown,
   placeholder,
   width,
   error,
   fontSize,
   maxLength,
+  disabled,
 }) => {
   const { classes } = useStyles({ width, fontSize });
 
@@ -18,6 +20,8 @@ const Input = ({
       onChange={onChange}
       value={value}
       maxLength={maxLength}
+      disabled={disabled}
+      onKeyDown={onKeyDown}
     />
   );
 };

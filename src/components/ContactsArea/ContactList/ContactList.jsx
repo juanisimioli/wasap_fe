@@ -1,47 +1,22 @@
 import ContactCard from "../ContactCard/ContactCard";
 import { useStyles } from "./styles";
+import { useWasapContext } from "@/contexts/useWasapContext";
 
 const ContactList = () => {
   const { classes } = useStyles();
+  const { contactList } = useWasapContext();
+
   return (
     <div className={classes.container}>
       <div className={classes.list}>
-        <ContactCard
-          name="Martin Barrioxi"
-          avatar=""
-          address={"0x709....c79C8"}
-        />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
-        <ContactCard name="Martin Barrioxi" avatar="" />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
-        <ContactCard name="Martin Barrioxi" avatar="" />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
-        <ContactCard name="Martin Barrioxi" avatar="" />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
-        <ContactCard name="Martin Barrioxi" avatar="" />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
-        <ContactCard name="Martin Barrioxi" avatar="" />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
-        <ContactCard name="Martin Barrioxi" avatar="" />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
-        <ContactCard name="Martin Barrioxi" avatar="" />
-        <ContactCard name="Sr Joven" avatar="" />
-        <ContactCard name="Tina" avatar="" />
-        <ContactCard name="Sofía Mansiri" avatar="" />
+        {contactList.map(({ name, addressUser, avatar }) => (
+          <ContactCard
+            name={name}
+            address={addressUser}
+            avatar={avatar}
+            key={`${addressUser}_card`}
+          />
+        ))}
       </div>
 
       <p className={classes.legal}>dApp for educational & learning purposes</p>
