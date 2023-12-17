@@ -1,17 +1,33 @@
 import { useStyles } from "./styles";
 import Image from "next/image";
-import { Add, Edit } from "@mui/icons-material";
+import { Add } from "@mui/icons-material";
 import { getUrlAvatar } from "@/utils/utils";
 import { useWasapContext } from "@/contexts/useWasapContext";
 
 const Header = () => {
   const { classes } = useStyles();
-  const { userInfo } = useWasapContext();
+  const {
+    userInfo,
+    setIsAddContactOpened,
+    isAddContactOpened,
+    isEditUserOpened,
+    setIsEditUserOpened,
+  } = useWasapContext();
+
+  const handleOpenAddContact = () => {
+    setIsAddContactOpened(true);
+  };
+
+  const handleOpenEditUser = () => {
+    setIsEditUserOpened(true);
+  };
+
+  if (isAddContactOpened || isEditUserOpened) return null;
 
   return (
     <header className={classes.header}>
       <div className={classes.content}>
-        <div className={classes.avatar}>
+        <div className={classes.avatar} onClick={handleOpenEditUser}>
           <Image
             src={getUrlAvatar(userInfo?.avatar)}
             width={40}
@@ -20,7 +36,7 @@ const Header = () => {
           />
         </div>
         <div className={classes.addIcon}>
-          <Add />
+          <Add onClick={handleOpenAddContact} />
         </div>
       </div>
     </header>

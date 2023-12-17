@@ -65,6 +65,9 @@ const useStyles = makeStyles()((theme) => ({
     borderRadius: "8px",
     fontSize: 14,
     cursor: "pointer",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
 
     "&:hover": {
       color: theme.palette.input.color,

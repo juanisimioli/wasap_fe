@@ -14,7 +14,7 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   contentContainer: {
-    padding: "24px 12px 24px 16pxf",
+    padding: "26px 4px 24px 16px",
   },
 
   backIcon: {
@@ -35,7 +35,7 @@ const useStyles = makeStyles()((theme) => ({
   inputAddress: {
     display: "flex",
     flexDirection: "row",
-    width: "100%",
+    width: "95%",
   },
 
   icons: {
@@ -60,6 +60,15 @@ const useStyles = makeStyles()((theme) => ({
 
     "&:hover": {
       color: theme.palette.bubble.backgroundSender,
+    },
+  },
+
+  disabled: {
+    color: theme.palette.scrollbar.color,
+    cursor: "default",
+
+    "&:hover": {
+      color: theme.palette.scrollbar.color,
     },
   },
 
@@ -91,10 +100,39 @@ const useStyles = makeStyles()((theme) => ({
     "&:hover": {
       color: theme.palette.input.color,
     },
+
+    "&:disabled": {
+      backgroundColor: theme.palette.input.background,
+      color: theme.palette.scrollbar.color,
+    },
+  },
+
+  addContactButton: {
+    all: "unset",
+    color: theme.palette.input.title,
+    backgroundColor: theme.palette.bubble.backgroundSender,
+    padding: "5px 15px",
+    borderRadius: "8px",
+    fontSize: 14,
+    cursor: "pointer",
+    minWidth: 87,
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+
+    "&:hover": {
+      color: theme.palette.input.color,
+    },
+
+    "&:disabled": {
+      backgroundColor: theme.palette.input.background,
+      color: theme.palette.scrollbar.color,
+    },
   },
 
   nameNewContact: {
     display: "flex",
+    margin: "24px 0",
   },
 
   avatar: {

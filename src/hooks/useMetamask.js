@@ -19,7 +19,7 @@ const formatBalance = (balance) => ethers.formatUnits(balance, "ether");
 
 const useMetamask = () => {
   const [hasProvider, setHasProvider] = useState(null);
-  const [isConnecting, setIsConnecting] = useState(false);
+  const [isConnecting, setIsConnecting] = useState(true);
   const [isAllowedChainId, setIsAllowedChainId] = useState(false);
   const [wallet, setWallet] = useState(disconnectedState);
 
@@ -101,6 +101,7 @@ const useMetamask = () => {
 
   const connectMetaMask = async () => {
     setIsConnecting(true);
+
     try {
       const accounts = await window.ethereum.request({
         method: "eth_requestAccounts",

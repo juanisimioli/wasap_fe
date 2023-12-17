@@ -21,7 +21,7 @@ const Chat = () => {
     if (chatRef.current) {
       goToBottom();
     }
-  }, []);
+  }, [chat]);
 
   const checkHeight = () => {
     const isBottom =
@@ -47,14 +47,14 @@ const Chat = () => {
               (messagesGroupedByContiguousSender, idx) => (
                 <div className={classes.groupSender} key={`groupBubble_${idx}`}>
                   {messagesGroupedByContiguousSender.map(
-                    ({ text, sender, time }, idx) => (
+                    ({ text, sender, time, status }, idx) => (
                       <Bubble
                         key={`bubble_${idx}`}
                         text={text}
                         isSender={getAddress(sender) === getAddress(address)}
                         isFirstMsgGroup={!idx}
                         time={time}
-                        status={sender === address ? 2 : null}
+                        status={status}
                       />
                     )
                   )}

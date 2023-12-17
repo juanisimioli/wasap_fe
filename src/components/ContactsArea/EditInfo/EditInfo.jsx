@@ -5,15 +5,39 @@ import { useStyles } from "./styles";
 import { CircularProgress } from "@mui/material";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 import { uploadFileToIpfs } from "@/utils/ipfs";
+import { useWasapContext } from "@/contexts/useWasapContext";
 
 const AddUser = () => {
   const { classes } = useStyles();
-  const [nameUser, setNameUser] = useState("");
-  const [cid, setCid] = useState("");
+
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState("");
 
-  const handleSaveInfo = () => {};
+  const { setIsEditUserOpened, userInfo, updateUserInfo, isUpdatingUserInfo } =
+    useWasapContext();
+  const { name, avatar } = userInfo;
+
+  const [nameUser, setNameUser] = useState(name);
+  const [cid, setCid] = useState(avatar);
+
+  const reset = () => {
+    setNameUser(name);
+    setCid(avatar);
+  };
+
+  const handleSaveInfo = () => {
+    if (nameUser.length === 0) {
+      setError("User name cannot be empty");
+      return;
+    }
+
+    updateUserInfo(cid, nameUser);
+  };
+
+  const handleChangeNameUser = ({ target }) => {
+    const { value } = target;
+    setNameUser(value);
+  };
 
   const uploadFile = async (file) => {
     setError("");
@@ -30,10 +54,15 @@ const AddUser = () => {
     }
   };
 
+  const handleCloseEditUser = () => {
+    reset();
+    setIsEditUserOpened(false);
+  };
+
   return (
     <div className={classes.container}>
       <div className={classes.titleContainer}>
-        <ArrowBack className={classes.backIcon} />
+        <ArrowBack className={classes.backIcon} onClick={handleCloseEditUser} />
         <p className={classes.title}>Profile</p>
       </div>
 
@@ -48,8 +77,9 @@ const AddUser = () => {
           <Input
             placeholder="Name"
             value={nameUser}
-            onChange={setNameUser}
+            onChange={handleChangeNameUser}
             fontSize={16}
+            maxLength={25}
           />
         </div>
 
@@ -57,9 +87,12 @@ const AddUser = () => {
 
         <div className={classes.containerAction}>
           <button className={classes.saveButton} onClick={handleSaveInfo}>
-            Save
+            {isUpdatingUserInfo ? (
+              <CircularProgress size={24} className={classes.loader} />
+            ) : (
+              "Save"
+            )}
           </button>
-          {true && <CircularProgress size={24} className={classes.loader} />}
         </div>
       </div>
     </div>

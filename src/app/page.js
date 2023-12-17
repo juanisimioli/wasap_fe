@@ -17,7 +17,7 @@ export default function Home() {
 
   return (
     <div style={{ display: "flex" }}>
-      {isConnecting || isUserRegistered === null ? (
+      {isConnecting || (address && isUserRegistered === null) ? (
         <LoaderApp />
       ) : isMetamask && address && isAllowedChainId && isUserRegistered ? (
         <>

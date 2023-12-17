@@ -2,7 +2,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { useStyles } from "./styles";
 import Input from "@/components/Utils/Input/Input";
 import { useWasapContext } from "@/contexts/useWasapContext";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const FooterChat = () => {
   const { classes } = useStyles();
@@ -16,8 +16,8 @@ const FooterChat = () => {
   };
 
   const handleSendMessage = async () => {
-    await sendMessage(contactSelected, value);
     setValue("");
+    await sendMessage(contactSelected, value);
   };
 
   const handleClickSend = () => {

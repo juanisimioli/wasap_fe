@@ -11,8 +11,6 @@ export const uploadFileToIpfs = async (file) => {
 
   const responseData = await res.json();
 
-  setCid(responseData.ipfsHash);
-
   if (!res.ok) throw new Error(await res.text());
 
   return responseData.ipfsHash;

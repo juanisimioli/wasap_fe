@@ -12,6 +12,7 @@ const useProviderAndSigner = () => {
   } = useMetamask();
 
   const getProviderAndSigner = async (ethereum) => {
+    console.log("********** getProviderAndSigner");
     try {
       const provider = new ethers.BrowserProvider(ethereum);
       const signer = address ? await provider.getSigner() : null;

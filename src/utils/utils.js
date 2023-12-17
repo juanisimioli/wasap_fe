@@ -6,6 +6,10 @@ export const epochToJsDate = (ts) => {
   return new Date(Number(ts) * 1000);
 };
 
+export const JsDateToEpoch = (date = new Date()) => {
+  return (date.getTime() - date.getMilliseconds()) / 1000;
+};
+
 export const dateTimeInfo = (epoch) => {
   const d = epochToJsDate(parseInt(epoch));
   const date = `${time2CharLong(d.getDate())}/${time2CharLong(
@@ -24,10 +28,8 @@ export const dateTimeInfo = (epoch) => {
 export const breakDownTimestamp = (messages) => {
   return messages.map((message) => {
     const { date, time } = dateTimeInfo(message?.timestamp);
-    const { text, sender } = message;
     return {
-      text,
-      sender,
+      ...message,
       date,
       time,
     };
@@ -74,9 +76,15 @@ export const groupMessagesByDate = (messages) => {
   return result;
 };
 
+export const assignStatusToAllMessages = (messages) => {
+  return messages.map(({ text, sender, timestamp, status = 2 }) => {
+    return { text, sender, timestamp, status };
+  });
+};
+
 export const calculateChat = (messages) => {
   return groupMessagesBySender(
-    groupMessagesByDate(breakDownTimestamp(messages))
+    groupMessagesByDate(breakDownTimestamp(assignStatusToAllMessages(messages)))
   );
 };
 

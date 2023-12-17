@@ -18,6 +18,20 @@ export const WasapContextProvider = ({ children }) => {
     isSendingMessage,
     sendMessage,
     userInfo,
+    addContact,
+    isAddingContact,
+    isAddContactOpened,
+    setIsAddContactOpened,
+    isCreatingAccount,
+    isLoadingCheckingUserExist,
+    checkUserExists,
+    getUserInfo,
+    isEditUserOpened,
+    setIsEditUserOpened,
+    updateUserInfo,
+    isUpdatingUserInfo,
+    isUpdatingContactName,
+    updateContactName,
   } = useWasap();
 
   const value = {
@@ -31,6 +45,20 @@ export const WasapContextProvider = ({ children }) => {
     isSendingMessage,
     sendMessage,
     userInfo,
+    addContact,
+    isAddingContact,
+    isAddContactOpened,
+    setIsAddContactOpened,
+    isCreatingAccount,
+    isLoadingCheckingUserExist,
+    checkUserExists,
+    getUserInfo,
+    isEditUserOpened,
+    setIsEditUserOpened,
+    updateUserInfo,
+    isUpdatingUserInfo,
+    isUpdatingContactName,
+    updateContactName,
   };
 
   return (

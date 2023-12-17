@@ -7,6 +7,7 @@ const useStyles = makeStyles()((theme) => ({
     display: "flex",
     position: "absolute",
     bottom: 14,
+    minWidth: 400,
 
     "& svg": {
       color: theme.palette.input.placeholder,

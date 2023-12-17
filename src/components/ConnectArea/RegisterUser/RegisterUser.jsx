@@ -8,6 +8,7 @@ import Image from "next/image";
 import FooterInfo from "../FooterInfo/FooterInfo";
 import { uploadFileToIpfs } from "@/utils/ipfs";
 import { useWasapContext } from "@/contexts/useWasapContext";
+import { CircularProgress } from "@mui/material";
 
 const RegisterUser = () => {
   const [isUploading, seIsUploading] = useState(false);
@@ -21,7 +22,7 @@ const RegisterUser = () => {
   const [isTouched, setIsTouched] = useState(false);
   const [error, setError] = useState("");
 
-  const { createAccount } = useWasapContext();
+  const { createAccount, isCreatingAccount } = useWasapContext();
 
   const uploadFile = async (file) => {
     setError("");
@@ -32,6 +33,7 @@ const RegisterUser = () => {
       const ipfsHash = await uploadFileToIpfs(file);
       setCid(ipfsHash);
     } catch (e) {
+      console.log(e);
       setError("Cannot update image");
     } finally {
       seIsUploading(false);
@@ -94,10 +96,14 @@ const RegisterUser = () => {
       {showRegisterButton && (
         <button
           className={classes.button}
-          disabled={!showRegisterButton}
+          disabled={!showRegisterButton || isCreatingAccount}
           onClick={handleRegisterUser}
         >
-          Register
+          {isCreatingAccount ? (
+            <CircularProgress size={24} className={classes.loader} />
+          ) : (
+            "Register"
+          )}
         </button>
       )}
 

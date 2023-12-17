@@ -53,8 +53,10 @@ const useStyles = makeStyles()((theme) => ({
     fontWeight: 600,
     display: "flex",
     alignItems: "center",
+    justifyContent: "center",
     gap: 16,
     padding: 15,
+    minWidth: 60,
 
     "&:disabled": {
       backgroundColor: theme.palette.input.background,
@@ -64,6 +66,10 @@ const useStyles = makeStyles()((theme) => ({
     "&:hover:enabled": {
       color: theme.palette.input.color,
     },
+  },
+
+  loader: {
+    color: "#005c4b",
   },
 }));
 
