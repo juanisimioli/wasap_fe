@@ -87,7 +87,11 @@ const AddUser = () => {
         <p className={classes.errorMessage}>{error}</p>
 
         <div className={classes.containerAction}>
-          <button className={classes.saveButton} onClick={handleSaveInfo}>
+          <button
+            className={classes.saveButton}
+            onClick={handleSaveInfo}
+            disabled={isUpdatingUserInfo}
+          >
             {isUpdatingUserInfo ? (
               <CircularProgress size={24} className={classes.loader} />
             ) : (

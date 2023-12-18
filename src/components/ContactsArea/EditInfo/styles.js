@@ -72,6 +72,11 @@ const useStyles = makeStyles()((theme) => ({
     "&:hover": {
       color: theme.palette.input.color,
     },
+
+    "&:disabled": {
+      backgroundColor: theme.palette.input.background,
+      color: theme.palette.scrollbar.color,
+    },
   },
 
   loader: {
