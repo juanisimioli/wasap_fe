@@ -1,7 +1,7 @@
-import { useWasapContext } from "@/contexts/useWasapContext";
-import { useStyles } from "./styles";
 import Image from "next/image";
+import { useWasapContext } from "@/contexts/useWasapContext";
 import { shortAddress, getUrlAvatar } from "@/utils/utils";
+import { useStyles } from "./styles";
 
 const ContactCard = ({ avatar, name, address }) => {
   const { classes } = useStyles();

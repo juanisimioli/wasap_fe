@@ -1,7 +1,7 @@
-import { useStyles } from "./styles";
 import Image from "next/image";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import FooterInfo from "../FooterInfo/FooterInfo";
+import { useStyles } from "./styles";
 
 const ConnectWallet = () => {
   const { classes } = useStyles();

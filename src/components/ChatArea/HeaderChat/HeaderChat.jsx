@@ -1,19 +1,15 @@
-import { useWasapContext } from "@/contexts/useWasapContext";
-import { useStyles } from "./styles";
-import Image from "next/image";
-import { getUrlAvatar } from "@/utils/utils";
-import { Edit, Clear, Check } from "@mui/icons-material";
 import { useEffect, useState, useRef } from "react";
+import Image from "next/image";
 import { CircularProgress } from "@mui/material";
+import { Edit, Clear, Check } from "@mui/icons-material";
+import { useWasapContext } from "@/contexts/useWasapContext";
+import { getUrlAvatar } from "@/utils/utils";
+import { useStyles } from "./styles";
 
 const HeaderChat = () => {
   const { classes } = useStyles();
-  const {
-    contactSelectedData,
-    isUpdatingContactName,
-    updateContactName,
-    contactSelected,
-  } = useWasapContext();
+  const { contactSelectedData, isUpdatingContactName, updateContactName } =
+    useWasapContext();
   const { name, avatar } = contactSelectedData;
 
   const inputRef = useRef(null);
@@ -31,7 +27,10 @@ const HeaderChat = () => {
     const { value } = target;
     setContactName(value);
   };
-  const handleKeyDown = () => {};
+
+  const handleKeyDown = () => {
+    // TODO
+  };
 
   const handleBlur = (e) => {
     setContactName(name);

@@ -1,9 +1,9 @@
-import { useStyles } from "./styles";
+import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import InstallMetamask from "./InstallMetamask/InstallMetamask";
 import ConnectWallet from "./ConnectWallet/ConnectWallet";
 import UseValidNetwork from "./UseValidNetwork/UseValidNetwork";
 import RegisterUser from "./RegisterUser/RegisterUser";
-import { useMetamaskContext } from "@/contexts/useMetamaskContext";
+import { useStyles } from "./styles";
 
 const ConnectArea = () => {
   const { classes } = useStyles();

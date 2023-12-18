@@ -1,8 +1,8 @@
-import SendIcon from "@mui/icons-material/Send";
-import { useStyles } from "./styles";
-import Input from "@/components/Utils/Input/Input";
+import { useState } from "react";
 import { useWasapContext } from "@/contexts/useWasapContext";
-import { useEffect, useState } from "react";
+import SendIcon from "@mui/icons-material/Send";
+import Input from "@/components/Utils/Input/Input";
+import { useStyles } from "./styles";
 
 const FooterChat = () => {
   const { classes } = useStyles();

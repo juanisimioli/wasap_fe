@@ -1,5 +1,5 @@
-import { LinkedIn, GitHub } from "@mui/icons-material";
 import Link from "next/link";
+import { LinkedIn, GitHub } from "@mui/icons-material";
 import { useStyles } from "./styles";
 
 const FooterInfo = () => {

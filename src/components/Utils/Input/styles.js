@@ -29,8 +29,6 @@ const useStyles = makeStyles()((theme, { width, fontSize }) => ({
     "&::placeholder": {
       color: theme.palette.input.placeholder,
     },
-
-    error: {},
   },
 }));
 

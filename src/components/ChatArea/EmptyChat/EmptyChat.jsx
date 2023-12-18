@@ -1,6 +1,6 @@
+import Image from "next/image";
 import FooterInfo from "@/components/ConnectArea/FooterInfo/FooterInfo";
 import { useStyles } from "./styles";
-import Image from "next/image";
 
 const EmptyChat = () => {
   const { classes } = useStyles();

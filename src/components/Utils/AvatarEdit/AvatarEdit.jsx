@@ -1,10 +1,10 @@
 import { useRef } from "react";
+import Image from "next/image";
 import { CircularProgress } from "@mui/material";
 import { CameraAlt } from "@mui/icons-material/";
-import { useStyles } from "./styles";
-import Image from "next/image";
 import { getUrlAvatar } from "@/utils/utils";
-
+import { useStyles } from "./styles";
+// TODO: check name: cid or avatar
 const AvatarEdit = ({ isUploading, onEditAvatar, cid }) => {
   const inputFile = useRef(null);
 

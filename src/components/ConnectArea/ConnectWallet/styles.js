@@ -25,7 +25,7 @@ const useStyles = makeStyles()((theme) => ({
     color: theme.palette.input.title,
     backgroundColor: theme.palette.bubble.backgroundSender,
     padding: "5px 15px",
-    borderRadius: "8px",
+    borderRadius: 8,
     fontSize: 14,
     cursor: "pointer",
     fontWeight: 600,

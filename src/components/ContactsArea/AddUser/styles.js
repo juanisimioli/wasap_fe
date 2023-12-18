@@ -41,8 +41,8 @@ const useStyles = makeStyles()((theme) => ({
   icons: {
     display: "flex",
     flexDirection: "column",
-    paddingLeft: "4px",
-    marginTop: "-2px",
+    paddingLeft: 4,
+    marginTop: -2,
   },
 
   containerVerify: {
@@ -93,7 +93,7 @@ const useStyles = makeStyles()((theme) => ({
     color: theme.palette.input.title,
     backgroundColor: theme.palette.bubble.backgroundSender,
     padding: "5px 15px",
-    borderRadius: "8px",
+    borderRadius: 8,
     fontSize: 14,
     cursor: "pointer",
 

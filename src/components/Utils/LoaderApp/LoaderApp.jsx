@@ -1,6 +1,6 @@
-import { useStyles } from "./styles";
-import { LinearProgress } from "@mui/material";
 import Image from "next/image";
+import { LinearProgress } from "@mui/material";
+import { useStyles } from "./styles";
 
 const LoaderApp = () => {
   const { classes } = useStyles();

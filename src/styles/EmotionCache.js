@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
-import createCache from "@emotion/cache";
 import { useServerInsertedHTML } from "next/navigation";
+import createCache from "@emotion/cache";
 import { CacheProvider as DefaultCacheProvider } from "@emotion/react";
 
 export default function NextAppDirEmotionCacheProvider(props) {

@@ -1,8 +1,8 @@
-import { useStyles } from "./styles";
 import Image from "next/image";
 import { Add } from "@mui/icons-material";
-import { getUrlAvatar } from "@/utils/utils";
 import { useWasapContext } from "@/contexts/useWasapContext";
+import { getUrlAvatar } from "@/utils/utils";
+import { useStyles } from "./styles";
 
 const Header = () => {
   const { classes } = useStyles();

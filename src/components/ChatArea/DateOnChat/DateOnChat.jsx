@@ -1,5 +1,5 @@
-import { useStyles } from "./styles";
 import { dateTimeInfo } from "@/utils/utils";
+import { useStyles } from "./styles";
 
 const DateOnChat = ({ date }) => {
   const { classes } = useStyles();

@@ -1,3 +1,9 @@
+export const STATUS_MESSAGE = {
+  Sending: 0,
+  Sent: 1,
+  Delivered: 2,
+};
+
 export const time2CharLong = (time) => {
   return String(time).padStart(2, "0");
 };
@@ -77,9 +83,11 @@ export const groupMessagesByDate = (messages) => {
 };
 
 export const assignStatusToAllMessages = (messages) => {
-  return messages.map(({ text, sender, timestamp, status = 2 }) => {
-    return { text, sender, timestamp, status };
-  });
+  return messages.map(
+    ({ text, sender, timestamp, status = STATUS_MESSAGE.Delivered }) => {
+      return { text, sender, timestamp, status };
+    }
+  );
 };
 
 export const calculateChat = (messages) => {

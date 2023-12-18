@@ -1,14 +1,14 @@
 "use client";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { CircularProgress } from "@mui/material";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
-import { useStyles } from "./styles";
+import { useWasapContext } from "@/contexts/useWasapContext";
 import Input from "@/components/Utils/Input/Input";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
-import Image from "next/image";
 import FooterInfo from "../FooterInfo/FooterInfo";
 import { uploadFileToIpfs } from "@/utils/ipfs";
-import { useWasapContext } from "@/contexts/useWasapContext";
-import { CircularProgress } from "@mui/material";
+import { useStyles } from "./styles";
 
 const RegisterUser = () => {
   const [isUploading, seIsUploading] = useState(false);
@@ -24,6 +24,7 @@ const RegisterUser = () => {
 
   const { createAccount, isCreatingAccount } = useWasapContext();
 
+  // TODO: reuse this method (check editInfo)
   const uploadFile = async (file) => {
     setError("");
     seIsUploading(true);
@@ -40,8 +41,8 @@ const RegisterUser = () => {
     }
   };
 
-  const registerUser = async (name, cid, address) => {
-    await createAccount(name, cid, setError);
+  const registerUser = async (name, cid) => {
+    await createAccount(name, cid);
   };
 
   const handleChangeName = ({ target }) => {

@@ -1,12 +1,12 @@
 "use client";
-import Bubble from "@/components/ChatArea/Bubble/Bubble";
 import { useRef, useEffect, useState } from "react";
-import { useStyles } from "./styles";
+import { getAddress } from "ethers";
+import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import { useWasapContext } from "@/contexts/useWasapContext";
+import Bubble from "@/components/ChatArea/Bubble/Bubble";
 import DateOnChat from "../DateOnChat/DateOnChat";
 import FabGoToBottom from "../FabGoToBottom/FabGoToBottom";
-import { useMetamaskContext } from "@/contexts/useMetamaskContext";
-import { getAddress } from "ethers";
+import { useStyles } from "./styles";
 
 const Chat = () => {
   const { classes } = useStyles();

@@ -1,12 +1,7 @@
 import { useStyles } from "./styles";
 import { TailIn, TailOut } from "./tails";
 import { Sending, Sent, Delivered } from "./status";
-
-const STATUS_MESSAGE = {
-  Sending: 0,
-  Sent: 1,
-  Delivered: 2,
-};
+import { STATUS_MESSAGE } from "@/utils/utils";
 
 const Bubble = ({ text, time, status, isSender, isFirstMsgGroup }) => {
   const { classes } = useStyles({ isSender, isFirstMsgGroup });

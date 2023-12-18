@@ -1,4 +1,5 @@
 const themeOptions = {
+  // TODO: fix color names
   palette: {
     background: {
       chat: "#0B141A",

@@ -1,8 +1,7 @@
 "use client";
 import { useEffect, useState, useCallback } from "react";
-import detectEthereumProvider from "@metamask/detect-provider";
 import { ethers } from "ethers";
-
+import detectEthereumProvider from "@metamask/detect-provider";
 import { allowedNetworkIds } from "../../config";
 
 const disconnectedState = {
@@ -115,14 +114,14 @@ const useMetamask = () => {
   };
 
   return {
-    clearError,
-    connectMetaMask,
+    wallet,
     error: !!errorMessage,
     errorMessage,
+    isMetamask: hasProvider,
     isAllowedChainId,
     isConnecting,
-    isMetamask: hasProvider,
-    wallet,
+    connectMetaMask,
+    clearError,
   };
 };
 

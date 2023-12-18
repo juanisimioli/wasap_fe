@@ -1,6 +1,6 @@
+import { useWasapContext } from "@/contexts/useWasapContext";
 import ContactCard from "../ContactCard/ContactCard";
 import { useStyles } from "./styles";
-import { useWasapContext } from "@/contexts/useWasapContext";
 
 const ContactList = () => {
   const { classes } = useStyles();

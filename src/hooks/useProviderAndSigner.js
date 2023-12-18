@@ -1,6 +1,6 @@
 "use client";
-import { ethers } from "ethers";
 import { useEffect, useState } from "react";
+import { ethers } from "ethers";
 import useMetamask from "./useMetamask";
 
 const useProviderAndSigner = () => {
@@ -12,7 +12,6 @@ const useProviderAndSigner = () => {
   } = useMetamask();
 
   const getProviderAndSigner = async (ethereum) => {
-    console.log("********** getProviderAndSigner");
     try {
       const provider = new ethers.BrowserProvider(ethereum);
       const signer = address ? await provider.getSigner() : null;

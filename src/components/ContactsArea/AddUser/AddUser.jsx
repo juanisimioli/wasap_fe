@@ -1,13 +1,13 @@
-import { ContentPaste, Clear, ArrowBack } from "@mui/icons-material";
 import { useEffect, useState } from "react";
-import Input from "@/components/Utils/Input/Input";
-import { useStyles } from "./styles";
-import { CircularProgress } from "@mui/material";
-import Image from "next/image";
 import { getAddress, isAddress } from "ethers";
+import Image from "next/image";
+import { CircularProgress } from "@mui/material";
+import { ContentPaste, Clear, ArrowBack } from "@mui/icons-material";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
+import Input from "@/components/Utils/Input/Input";
 import { getUrlAvatar } from "@/utils/utils";
+import { useStyles } from "./styles";
 
 const AddUser = () => {
   const { classes } = useStyles();
@@ -65,7 +65,6 @@ const AddUser = () => {
     setNameNewContact(contactInfo[0]);
     setAvatarNewContact(contactInfo[1]);
     setIsContactRegistered(true);
-    console.log(contactInfo);
   };
 
   const handleNameNewContact = ({ target }) => {
@@ -74,9 +73,8 @@ const AddUser = () => {
   };
 
   const handleAddContact = async () => {
-    console.log("add contact ", addressNewContact, nameNewContact);
     try {
-      const response = await addContact(addressNewContact, nameNewContact);
+      await addContact(addressNewContact, nameNewContact);
     } catch (e) {
       setError("Error. Try Again");
     }

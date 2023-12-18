@@ -1,11 +1,11 @@
-import { ArrowBack } from "@mui/icons-material";
 import { useState } from "react";
-import Input from "@/components/Utils/Input/Input";
-import { useStyles } from "./styles";
 import { CircularProgress } from "@mui/material";
+import { ArrowBack } from "@mui/icons-material";
+import { useWasapContext } from "@/contexts/useWasapContext";
+import Input from "@/components/Utils/Input/Input";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 import { uploadFileToIpfs } from "@/utils/ipfs";
-import { useWasapContext } from "@/contexts/useWasapContext";
+import { useStyles } from "./styles";
 
 const AddUser = () => {
   const { classes } = useStyles();
@@ -39,6 +39,7 @@ const AddUser = () => {
     setNameUser(value);
   };
 
+  // TODO: reuse this method
   const uploadFile = async (file) => {
     setError("");
     setIsUploading(true);
