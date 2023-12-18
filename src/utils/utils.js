@@ -106,3 +106,8 @@ export const getUrlAvatar = (cid) => {
     ? `${process.env.NEXT_PUBLIC_AVATAR_URL}${cid}`
     : "/default-user.svg";
 };
+
+export const playNotification = () => {
+  var audio = document.getElementById("notification");
+  audio.play();
+};

@@ -30,6 +30,7 @@ const App = () => {
           <ConnectArea />
         )}
       </div>
+      <audio id="notification" src="/wasap_notification.mp3" />
     </div>
   );
 };

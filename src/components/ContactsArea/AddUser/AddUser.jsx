@@ -28,6 +28,7 @@ const AddUser = () => {
     isLoadingCheckingUserExist,
     getUserInfo,
     isAddingContact,
+    contactList,
   } = useWasapContext();
   const { wallet } = useMetamaskContext();
   const { address } = wallet;
@@ -52,6 +53,17 @@ const AddUser = () => {
   const handleVerifyAddress = async () => {
     if (getAddress(addressNewContact) === getAddress(address)) {
       setError("Cannot add yourself");
+      return;
+    }
+
+    const alreadyContacts = Boolean(
+      contactList.find(
+        (contact) => contact.contactAddress === addressNewContact
+      )
+    );
+
+    if (alreadyContacts) {
+      setError("Contact is in your contact List");
       return;
     }
 

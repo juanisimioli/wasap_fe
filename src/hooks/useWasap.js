@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { ethers, getAddress } from "ethers";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import useProviderAndSigner from "./useProviderAndSigner";
-import { calculateChat, JsDateToEpoch } from "@/utils/utils";
+import { calculateChat, JsDateToEpoch, playNotification } from "@/utils/utils";
 import { wasapContractAddress } from "../../config";
 import { STATUS_MESSAGE } from "@/utils/utils";
 import Wasap from "../../contract/Wasap.json";
@@ -229,12 +229,12 @@ const useWasap = () => {
 
   useEffect(() => {
     if (isAddContactOpened) setIsAddContactOpened(false);
-  }, [address, chainId]);
+  }, [contract]);
 
   useEffect(() => {
     if (!contract || !address || !isUserRegistered || !isAllowedChainId) return;
     handleGetUserInfo(address);
-  }, [isUserRegistered, address]);
+  }, [isUserRegistered, contract]);
 
   useEffect(() => {
     if (!contract || !address || !isAllowedChainId) return;
@@ -245,7 +245,7 @@ const useWasap = () => {
     if (!contract || !address || !isUserRegistered || !isAllowedChainId) return;
     handleGetUserContactList();
     selectContact(null);
-  }, [isUserRegistered, contract]);
+  }, [isUserRegistered, contract, isAllowedChainId]);
 
   useEffect(() => {
     if (
@@ -318,12 +318,19 @@ const useWasap = () => {
     const userAddress = getAddress(user);
     const contactAddress = getAddress(contact);
     if (
-      (getAddress(address) === userAddress &&
-        getAddress(contactSelected) === contactAddress) ||
-      (getAddress(contactSelected) === userAddress &&
-        getAddress(address) === contactAddress)
-    )
+      getAddress(contactSelected) === userAddress &&
+      getAddress(address) === contactAddress
+    ) {
+      // user is receiving message, so play notification
       handleReadMessages();
+      playNotification();
+    } else if (
+      getAddress(address) === userAddress &&
+      getAddress(contactSelected) === contactAddress
+    ) {
+      // user sent message and only update chat
+      handleReadMessages();
+    }
   };
 
   const handleUserInfoUpdatedEvent = (user) => {

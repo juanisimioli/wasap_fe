@@ -12,7 +12,7 @@ const ContactList = () => {
   return (
     <div className={classes.container}>
       <div className={classes.list}>
-        {contactList.map(({ name, contactAddress, avatar }) => (
+        {contactList?.map(({ name, contactAddress, avatar }) => (
           <ContactCard
             name={name}
             address={contactAddress}
