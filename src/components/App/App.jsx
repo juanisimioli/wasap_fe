@@ -18,7 +18,8 @@ const App = () => {
   return (
     <div className={classes.a}>
       <div className={classes.container}>
-        {isConnecting || (address && isUserRegistered === null) ? (
+        {isConnecting ||
+        (address && isUserRegistered === null && isAllowedChainId) ? (
           <LoaderApp />
         ) : isMetamask && address && isAllowedChainId && isUserRegistered ? (
           <>
