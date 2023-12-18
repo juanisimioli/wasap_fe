@@ -24,6 +24,8 @@ const RegisterUser = () => {
 
   const { createAccount, isCreatingAccount } = useWasapContext();
 
+  const canRegister = !error && name.length !== 0 && !isZeroBalance;
+
   // TODO: reuse this method (check editInfo)
   const uploadFile = async (file) => {
     setError("");
@@ -51,12 +53,17 @@ const RegisterUser = () => {
     setName(value);
   };
 
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      handleRegisterUser();
+    }
+  };
+
   const handleRegisterUser = () => {
+    if (!canRegister) return;
     if (!isTouched) setIsTouched(true);
     registerUser(name, cid, address);
   };
-
-  const showRegisterButton = !error && name.length !== 0 && !isZeroBalance;
 
   useEffect(() => {
     setIsZeroBalance(Number(balance) === 0);
@@ -87,6 +94,7 @@ const RegisterUser = () => {
         <Input
           value={name}
           onChange={handleChangeName}
+          onKeyDown={handleKeyDown}
           placeholder="Your name"
           maxLength={25}
           width={250}
@@ -94,10 +102,10 @@ const RegisterUser = () => {
         <p className={classes.error}>{error}</p>
       </div>
 
-      {showRegisterButton && (
+      {canRegister && (
         <button
           className={classes.button}
-          disabled={!showRegisterButton || isCreatingAccount}
+          disabled={!canRegister || isCreatingAccount}
           onClick={handleRegisterUser}
         >
           {isCreatingAccount ? (
