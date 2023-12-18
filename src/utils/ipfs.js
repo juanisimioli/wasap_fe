@@ -1,5 +1,10 @@
-export const uploadFileToIpfs = async (file) => {
+export const uploadFileToIpfs = async (file, setError) => {
   if (!file) return;
+
+  if (file?.size > 205000) {
+    setError("Image must be lower than 200kb");
+    return;
+  }
 
   const data = new FormData();
   data.set("file", file), { filename: file.name };

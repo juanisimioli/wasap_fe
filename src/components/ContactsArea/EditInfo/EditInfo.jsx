@@ -39,14 +39,12 @@ const AddUser = () => {
     setNameUser(value);
   };
 
-  // TODO: reuse this method
   const uploadFile = async (file) => {
     setError("");
     setIsUploading(true);
-    if (file?.size > 205000) setError("Image must be lower than 200kb");
 
     try {
-      const ipfsHash = await uploadFileToIpfs(file);
+      const ipfsHash = await uploadFileToIpfs(file, setError);
       setCid(ipfsHash);
     } catch (e) {
       setError("Cannot update image");

@@ -26,14 +26,12 @@ const RegisterUser = () => {
 
   const canRegister = !error && name.length !== 0 && !isZeroBalance;
 
-  // TODO: reuse this method (check editInfo)
   const uploadFile = async (file) => {
     setError("");
     seIsUploading(true);
-    if (file?.size > 205000) setError("Image must be lower than 200kb");
 
     try {
-      const ipfsHash = await uploadFileToIpfs(file);
+      const ipfsHash = await uploadFileToIpfs(file, setError);
       setCid(ipfsHash);
     } catch (e) {
       console.log(e);
