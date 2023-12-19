@@ -4,11 +4,11 @@ const useStyles = makeStyles()((theme, { width, fontSize }) => ({
   input: {
     height: 42.05,
     padding: 9,
-    backgroundColor: theme.palette.input.background,
-    border: `1px solid ${theme.palette.input.background}`,
+    backgroundColor: theme.palette.deepBlueGreen,
+    border: `1px solid ${theme.palette.deepBlueGreen}`,
     borderRadius: 8,
 
-    color: theme.palette.input.color,
+    color: theme.palette.white,
 
     width: width || "100%",
 
@@ -27,7 +27,7 @@ const useStyles = makeStyles()((theme, { width, fontSize }) => ({
     },
 
     "&::placeholder": {
-      color: theme.palette.input.placeholder,
+      color: theme.palette.gray,
     },
   },
 }));

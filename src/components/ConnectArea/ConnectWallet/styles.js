@@ -12,18 +12,18 @@ const useStyles = makeStyles()((theme) => ({
 
   title: {
     margin: 0,
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
   },
 
   text: {
-    color: theme.palette.input.title,
+    color: theme.palette.lightGray,
     fontSize: 18,
     margin: 0,
   },
   button: {
     all: "unset",
-    color: theme.palette.input.title,
-    backgroundColor: theme.palette.bubble.backgroundSender,
+    color: theme.palette.lightGray,
+    backgroundColor: theme.palette.deepBlue2,
     padding: "5px 15px",
     borderRadius: 8,
     fontSize: 14,
@@ -35,7 +35,7 @@ const useStyles = makeStyles()((theme) => ({
     padding: 15,
 
     "&:hover": {
-      color: theme.palette.input.color,
+      color: theme.palette.white,
     },
   },
 }));

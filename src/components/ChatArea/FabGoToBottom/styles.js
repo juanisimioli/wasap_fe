@@ -7,7 +7,7 @@ const useStyles = makeStyles()((theme) => ({
     bottom: 79,
     width: 42,
     height: 42,
-    backgroundColor: theme.palette.bubble.backgroundReceiver,
+    backgroundColor: theme.palette.darkGray,
     borderRadius: "50%",
     display: "flex",
     alignItems: "center",
@@ -26,7 +26,7 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   icon: {
-    color: theme.palette.input.send,
+    color: theme.palette.grayBlue,
   },
 }));
 

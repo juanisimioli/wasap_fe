@@ -2,7 +2,7 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => ({
   header: {
-    backgroundColor: theme.palette.background.action,
+    backgroundColor: theme.palette.darkGray,
     zIndex: 10,
     borderRight: "1px solid rgba(134,150,160,0.15)",
   },
@@ -26,7 +26,7 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   addIcon: {
-    color: theme.palette.input.send,
+    color: theme.palette.grayBlue,
     cursor: "pointer",
     marginTop: 6,
 

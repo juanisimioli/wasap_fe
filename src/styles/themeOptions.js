@@ -1,32 +1,20 @@
 const themeOptions = {
-  // TODO: fix color names
   palette: {
-    background: {
-      chat: "#0B141A",
-      action: "#202C33",
-      contacts: "#111B21",
-    },
-    input: {
-      background: "#2a3942",
-      placeholder: "#83939D",
-      color: "#FBFEFF",
-      send: "#798891",
-      title: "#D9DEE0",
-    },
-    bubble: {
-      backgroundSender: "#005c4b",
-      backgroundReceiver: "#202C33",
-      text: "#e9edef",
-    },
-    green: {
-      soft: "#A2C4BE",
-    },
-    scrollbar: {
-      color: "#79889155",
-    },
-    error: {
-      main: "#ED5A6B",
-    },
+    black: "#0B141A",
+    deepBlue: "#111B21",
+    darkGray: "#202C33",
+    deepBlueGreen: "#2a3942",
+    deepBlue2: "#005c4b",
+    gray: "#83939D",
+    grayBlue: "#798891",
+    lightGray: "#D9DEE0",
+    lightGrayishWhite: "#e9edef",
+    softGreen: "#A2C4BE",
+    scrollbarColor: "#79889155",
+    darkGray2: "#242E34",
+    lightGray2: "#182229EE",
+    errorRed: "#ED5A6B",
+    white: "#FBFEFF",
   },
 };
 

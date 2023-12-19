@@ -11,7 +11,7 @@ const useStyles = makeStyles()((theme) => ({
     display: "flex",
     flexFlow: "column",
     height: "100%",
-    backgroundColor: theme.palette.background.chat,
+    backgroundColor: theme.palette.black,
     position: "relative",
   },
 }));

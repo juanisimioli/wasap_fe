@@ -11,11 +11,11 @@ const useStyles = makeStyles()((theme) => ({
 
   title: {
     margin: 0,
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
   },
 
   text: {
-    color: theme.palette.input.title,
+    color: theme.palette.lightGray,
     fontSize: 18,
     marginTop: 0,
   },

@@ -5,7 +5,7 @@ const useStyles = makeStyles()((theme, props, classes) => ({
     width: "100%",
     height: 72,
     position: "relative",
-    backgroundColor: theme.palette.background.contacts,
+    backgroundColor: theme.palette.deepBlue,
     display: "flex",
     flexDirection: "row",
     cursor: "pointer",
@@ -13,12 +13,12 @@ const useStyles = makeStyles()((theme, props, classes) => ({
     justifyContent: "space-between",
 
     [`&:hover.${classes.nonSelected}`]: {
-      backgroundColor: "#202C33",
+      backgroundColor: theme.palette.darkGray,
     },
   },
 
   selected: {
-    backgroundColor: "#2A3942",
+    backgroundColor: theme.palette.deepBlueGreen,
   },
 
   avatar: {
@@ -39,14 +39,14 @@ const useStyles = makeStyles()((theme, props, classes) => ({
   },
 
   name: {
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
     fontWeight: 500,
     fontSize: 16,
     margin: 0,
   },
 
   address: {
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
     fontWeight: 300,
     fontSize: 14,
     margin: 0,

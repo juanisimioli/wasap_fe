@@ -2,7 +2,7 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => ({
   container: {
-    backgroundColor: theme.palette.background.chat,
+    backgroundColor: theme.palette.black,
     width: "100vw",
     height: "100vh",
     position: "fixed",
@@ -15,19 +15,19 @@ const useStyles = makeStyles()((theme) => ({
 
   title: {
     margin: 0,
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
   },
 
   loader: {
     width: "45%",
     "&.MuiLinearProgress-root": {
       "& .MuiLinearProgress-barColorPrimary": {
-        backgroundColor: theme.palette.bubble.backgroundSender,
+        backgroundColor: theme.palette.deepBlue2,
       },
     },
 
     "&.MuiLinearProgress-indeterminate": {
-      backgroundColor: theme.palette.green.soft,
+      backgroundColor: theme.palette.softGreen,
     },
   },
 }));

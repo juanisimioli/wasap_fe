@@ -10,7 +10,7 @@ const useStyles = makeStyles()((theme) => ({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-    backgroundColor: theme.palette.background.contacts,
+    backgroundColor: theme.palette.deepBlue,
     position: "relative",
     width: 400,
     borderRight: "1px solid rgba(134,150,160,0.15)",

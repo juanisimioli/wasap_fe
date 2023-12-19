@@ -9,7 +9,7 @@ const useStyles = makeStyles()((theme) => ({
   titleContainer: {
     display: "flex",
     alignItems: "end",
-    backgroundColor: theme.palette.bubble.backgroundReceiver,
+    backgroundColor: theme.palette.darkGray,
     height: 120,
   },
 
@@ -19,7 +19,7 @@ const useStyles = makeStyles()((theme) => ({
 
   backIcon: {
     fontSize: 24,
-    color: theme.palette.input.title,
+    color: theme.palette.lightGray,
     fontWeight: 500,
     cursor: "pointer",
     margin: "0 0 20px 12px",
@@ -27,7 +27,7 @@ const useStyles = makeStyles()((theme) => ({
 
   title: {
     fontSize: 19,
-    color: theme.palette.input.title,
+    color: theme.palette.lightGray,
     fontWeight: 500,
     marginLeft: 24,
   },
@@ -54,63 +54,63 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   pasteIcon: {
-    color: theme.palette.input.send,
+    color: theme.palette.grayBlue,
     cursor: "pointer",
     width: 15,
 
     "&:hover": {
-      color: theme.palette.bubble.backgroundSender,
+      color: theme.palette.deepBlue2,
     },
   },
 
   disabled: {
-    color: theme.palette.scrollbar.color,
+    color: theme.palette.scrollbarColor,
     cursor: "default",
 
     "&:hover": {
-      color: theme.palette.scrollbar.color,
+      color: theme.palette.scrollbarColor,
     },
   },
 
   clearIcon: {
-    color: theme.palette.input.send,
+    color: theme.palette.grayBlue,
     cursor: "pointer",
     width: 16,
 
     "&:hover": {
-      color: theme.palette.error.main,
+      color: theme.palette.errorRed,
     },
   },
 
   errorMessage: {
-    color: theme.palette.error.main,
+    color: theme.palette.errorRed,
     fontSize: 14,
     margin: 0,
   },
 
   verifyButton: {
     all: "unset",
-    color: theme.palette.input.title,
-    backgroundColor: theme.palette.bubble.backgroundSender,
+    color: theme.palette.lightGray,
+    backgroundColor: theme.palette.deepBlue2,
     padding: "5px 15px",
     borderRadius: 8,
     fontSize: 14,
     cursor: "pointer",
 
     "&:hover": {
-      color: theme.palette.input.color,
+      color: theme.palette.white,
     },
 
     "&:disabled": {
-      backgroundColor: theme.palette.input.background,
-      color: theme.palette.scrollbar.color,
+      backgroundColor: theme.palette.deepBlueGreen,
+      color: theme.palette.scrollbarColor,
     },
   },
 
   addContactButton: {
     all: "unset",
-    color: theme.palette.input.title,
-    backgroundColor: theme.palette.bubble.backgroundSender,
+    color: theme.palette.lightGray,
+    backgroundColor: theme.palette.deepBlue2,
     padding: "5px 15px",
     borderRadius: "8px",
     fontSize: 14,
@@ -121,12 +121,12 @@ const useStyles = makeStyles()((theme) => ({
     alignItems: "center",
 
     "&:hover": {
-      color: theme.palette.input.color,
+      color: theme.palette.white,
     },
 
     "&:disabled": {
-      backgroundColor: theme.palette.input.background,
-      color: theme.palette.scrollbar.color,
+      backgroundColor: theme.palette.deepBlueGreen,
+      color: theme.palette.scrollbarColor,
     },
   },
 
@@ -144,7 +144,7 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   loader: {
-    color: "#005c4b",
+    color: theme.palette.deepBlue2,
   },
 }));
 

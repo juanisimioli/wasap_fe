@@ -2,7 +2,7 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => ({
   container: {
-    color: theme.palette.input.placeholder,
+    color: theme.palette.gray,
     gap: 10,
     display: "flex",
     position: "absolute",
@@ -10,9 +10,9 @@ const useStyles = makeStyles()((theme) => ({
     minWidth: 400,
 
     "& svg": {
-      color: theme.palette.input.placeholder,
+      color: theme.palette.gray,
       "&:hover": {
-        color: theme.palette.bubble.text,
+        color: theme.palette.lightGrayishWhite,
       },
     },
   },

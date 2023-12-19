@@ -12,7 +12,7 @@ const useStyles = makeStyles()((theme) => ({
     },
 
     "::-webkit-scrollbar-thumb": {
-      background: theme.palette.scrollbar.color,
+      background: theme.palette.scrollbarColor,
     },
   },
 

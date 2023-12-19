@@ -11,7 +11,7 @@ const useStyles = makeStyles()((theme) => ({
     },
 
     "::-webkit-scrollbar-thumb": {
-      background: theme.palette.scrollbar.color,
+      background: theme.palette.scrollbarColor,
     },
     display: "flex",
     flexDirection: "column",
@@ -19,7 +19,7 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   legal: {
-    color: theme.palette.scrollbar.color,
+    color: theme.palette.scrollbarColor,
     fontSize: 13,
     padding: 8,
     width: "90%",

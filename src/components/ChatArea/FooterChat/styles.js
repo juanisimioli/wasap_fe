@@ -3,7 +3,7 @@ import { makeStyles } from "tss-react/mui";
 const useStyles = makeStyles()((theme) => ({
   footer: {
     flex: "none",
-    backgroundColor: theme.palette.background.action,
+    backgroundColor: theme.palette.darkGray,
     height: 62.5,
 
     zIndex: 10,
@@ -15,7 +15,7 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   iconSendMessage: {
-    color: theme.palette.input.send,
+    color: theme.palette.grayBlue,
     margin: 8,
     cursor: "pointer",
   },

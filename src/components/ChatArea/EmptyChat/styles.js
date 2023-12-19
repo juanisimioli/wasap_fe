@@ -2,7 +2,7 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => ({
   container: {
-    backgroundColor: "#242E34",
+    backgroundColor: theme.palette.darkGray2,
     height: "100vh",
     width: "100%",
     display: "flex",
@@ -13,12 +13,12 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   title: {
-    color: `${theme.palette.bubble.text}e0`,
+    color: `${theme.palette.lightGrayishWhite}e0`,
     fontWeight: 500,
     fontSize: 32,
   },
   text: {
-    color: `${theme.palette.bubble.text}e0`,
+    color: `${theme.palette.lightGrayishWhite}e0`,
   },
 }));
 

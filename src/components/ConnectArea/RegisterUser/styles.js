@@ -11,41 +11,41 @@ const useStyles = makeStyles()((theme) => ({
 
   title: {
     margin: 0,
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
   },
 
   address: {
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
     margin: "12px 0 0 0",
     padding: 9,
   },
 
   error: {
     margin: "8px 0 0 0",
-    color: theme.palette.error.main,
+    color: theme.palette.errorRed,
     textAlign: "center",
   },
 
   errorZeroTokens: {
-    color: theme.palette.error.main,
+    color: theme.palette.errorRed,
     textAlign: "center",
     margin: 0,
     "& a": {
       all: "unset",
       fontWeight: 500,
-      color: theme.palette.bubble.text,
+      color: theme.palette.lightGrayishWhite,
       cursor: "pointer",
 
       "&:hover": {
-        color: theme.palette.bubble.backgroundSender,
+        color: theme.palette.deepBlue2,
       },
     },
   },
 
   button: {
     all: "unset",
-    color: theme.palette.input.title,
-    backgroundColor: theme.palette.bubble.backgroundSender,
+    color: theme.palette.lightGray,
+    backgroundColor: theme.palette.deepBlue2,
     padding: "5px 15px",
     borderRadius: 8,
     fontSize: 14,
@@ -59,17 +59,17 @@ const useStyles = makeStyles()((theme) => ({
     minWidth: 60,
 
     "&:disabled": {
-      backgroundColor: theme.palette.input.background,
-      color: theme.palette.scrollbar.color,
+      backgroundColor: theme.palette.deepBlueGreen,
+      color: theme.palette.scrollbarColor,
     },
 
     "&:hover:enabled": {
-      color: theme.palette.input.color,
+      color: theme.palette.white,
     },
   },
 
   loader: {
-    color: "#005c4b",
+    color: theme.palette.deepBlue2,
   },
 }));
 

@@ -2,7 +2,7 @@ import { makeStyles } from "tss-react/mui";
 
 const useStyles = makeStyles()((theme) => ({
   header: {
-    backgroundColor: theme.palette.background.action,
+    backgroundColor: theme.palette.darkGray,
     height: 60,
     zIndex: 10,
     boxShadow: "1px 1px 5px rgba(0, 0, 0, 0.5)",
@@ -35,20 +35,20 @@ const useStyles = makeStyles()((theme) => ({
 
   editContactNameIcon: {
     fontSize: 16,
-    color: theme.palette.input.placeholder,
+    color: theme.palette.gray,
     display: "none",
   },
 
   inputName: {
     all: "unset",
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
     fontSize: 16,
     fontWeight: 600,
     padding: "4px 10px",
     borderRadius: 4,
 
     "&:focus": {
-      backgroundColor: theme.palette.input.background,
+      backgroundColor: theme.palette.deepBlueGreen,
     },
 
     position: "absolute",
@@ -70,27 +70,27 @@ const useStyles = makeStyles()((theme) => ({
   },
 
   checkIcon: {
-    color: theme.palette.input.send,
+    color: theme.palette.grayBlue,
     cursor: "pointer",
     width: 22,
 
     "&:hover": {
-      color: theme.palette.bubble.backgroundSender,
+      color: theme.palette.deepBlue2,
     },
   },
 
   clearIcon: {
-    color: theme.palette.input.send,
+    color: theme.palette.grayBlue,
     cursor: "pointer",
     width: 22,
 
     "&:hover": {
-      color: theme.palette.error.main,
+      color: theme.palette.errorRed,
     },
   },
 
   loader: {
-    color: "#005c4b",
+    color: theme.palette.deepBlue2,
     marginLeft: 16,
   },
 }));

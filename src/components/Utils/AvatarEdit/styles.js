@@ -14,7 +14,7 @@ const useStyles = makeStyles()((theme, { uploading }, classes) => ({
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: uploading ? theme.palette.input.background : "none",
+    backgroundColor: uploading ? theme.palette.deepBlueGreen : "none",
 
     [`&:hover .${classes.uploadArea}`]: {
       opacity: 0.8,
@@ -23,11 +23,11 @@ const useStyles = makeStyles()((theme, { uploading }, classes) => ({
 
   uploadArea: {
     position: "absolute",
-    backgroundColor: theme.palette.bubble.backgroundReceiver,
+    backgroundColor: theme.palette.darkGray,
     zIndex: 100,
     width: "100%",
     height: "100%",
-    color: theme.palette.bubble.text,
+    color: theme.palette.lightGrayishWhite,
     transition: "all 0.15s",
     opacity: 0,
     display: "flex",
@@ -44,7 +44,7 @@ const useStyles = makeStyles()((theme, { uploading }, classes) => ({
   },
 
   loader: {
-    color: "#005c4b",
+    color: theme.palette.deepBlue2,
   },
 }));
 
