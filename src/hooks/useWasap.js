@@ -250,7 +250,7 @@ const useWasap = () => {
   useEffect(() => {
     if (!contract || !address || !isUserRegistered || !isAllowedChainId) return;
     handleGetUserInfo(address);
-  }, [isUserRegistered]);
+  }, [isUserRegistered, contract]);
 
   useEffect(() => {
     if (!contract || !address || !isAllowedChainId) return;
@@ -273,6 +273,7 @@ const useWasap = () => {
     )
       return;
     handleReadMessages();
+    if (isUpdatingContactName) setIsUpdatingContactName(false);
   }, [contactSelected]);
 
   useEffect(() => {
@@ -395,7 +396,7 @@ const useWasap = () => {
       await contract.off("ContactInfoUpdated", handleContactInfoUpdatedEvent);
       await contract.off("MessageSent", handleMessageSentEvent);
     };
-  }, [contactSelectedData]);
+  }, [contactSelected]);
 
   return {
     isUserRegistered,
