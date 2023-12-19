@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { ethers, getAddress } from "ethers";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
+import { useToast } from "./useToast";
 import useProviderAndSigner from "./useProviderAndSigner";
 import { calculateChat, JsDateToEpoch, playNotification } from "@/utils/utils";
 import { wasapContractAddress } from "../../config";
@@ -14,6 +15,8 @@ const useWasap = () => {
     wallet: { address, chainId },
     isAllowedChainId,
   } = useMetamaskContext();
+
+  const { handleOpenToast } = useToast();
 
   const [contract, setContract] = useState(null);
 
@@ -54,7 +57,8 @@ const useWasap = () => {
     try {
       return await contract.checkUserExists(address);
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem checking user exist");
+      console.error(e);
     }
   };
 
@@ -62,7 +66,8 @@ const useWasap = () => {
     try {
       return await contract.getUserInfo(address);
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem getting user info");
+      console.error(e);
     }
   };
 
@@ -70,7 +75,8 @@ const useWasap = () => {
     try {
       return await contract.getUserContactList();
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem getting user contact list");
+      console.error(e);
     }
   };
 
@@ -78,7 +84,8 @@ const useWasap = () => {
     try {
       return await contract.readMessages(contact);
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem reading messages");
+      console.error(e);
     }
   };
 
@@ -94,7 +101,8 @@ const useWasap = () => {
       const createAccount = await contract.createAccount(_name, _avatar);
       createAccount.wait();
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem creating account");
+      console.error(e);
     }
   };
 
@@ -108,7 +116,8 @@ const useWasap = () => {
       contactAdded.wait();
       setIsNewContactOpen(false);
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem adding contact");
+      console.error(e);
     } finally {
       setIsAddingContact(false);
     }
@@ -123,7 +132,8 @@ const useWasap = () => {
       updateMessageStatusToSent(timestamp);
       messageSent.wait();
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem sending message");
+      console.error(e);
     } finally {
       setIsSendingMessage(false);
     }
@@ -135,7 +145,8 @@ const useWasap = () => {
       const update = await contract.updateUserInfo(_userAvatar, _userName);
       update.wait();
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem updating user info");
+      console.error(e);
     } finally {
       setIsUpdatingUserInfo(false);
       getUserInfo(address);
@@ -152,7 +163,8 @@ const useWasap = () => {
       );
       update.wait();
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem updating contact info");
+      console.error(e);
     }
   };
 

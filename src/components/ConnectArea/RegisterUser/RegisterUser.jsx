@@ -33,8 +33,8 @@ const RegisterUser = () => {
       const ipfsHash = await uploadFileToIpfs(file, setError);
       setAvatar(ipfsHash);
     } catch (e) {
-      console.log(e);
       setError("Cannot update image");
+      console.error(e);
     } finally {
       seIsUploading(false);
     }

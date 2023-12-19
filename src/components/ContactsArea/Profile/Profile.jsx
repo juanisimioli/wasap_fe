@@ -48,6 +48,7 @@ const Profile = () => {
       setAvatarUser(ipfsHash);
     } catch (e) {
       setError("Cannot update image");
+      console.error(e);
     } finally {
       setIsUploading(false);
     }

@@ -17,21 +17,6 @@ const saveFile = async (file, name) => {
   }
 };
 
-// export async function GET(req, res) {
-//   try {
-//     const response = await pinata.pinList(
-//       { pinataJWTKey: process.env.PINATA_JWT },
-//       {
-//         pageLimit: 1,
-//       }
-//     );
-//     res.json(response.rows[0]);
-//   } catch (e) {
-//     console.log(e);
-//     res.status(500).send("Server Error");
-//   }
-// }
-
 export async function POST(request, res) {
   try {
     const data = await request.formData();
@@ -57,8 +42,6 @@ export async function POST(request, res) {
 
     return NextResponse.json({ success: true, ipfsHash: IpfsHash });
   } catch (e) {
-    console.log(e);
-    // TODO: handle this error
     return NextResponse.json({ success: false });
   }
 }

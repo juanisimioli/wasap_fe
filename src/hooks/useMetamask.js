@@ -109,6 +109,7 @@ const useMetamask = () => {
       updateWallet(accounts);
     } catch (err) {
       setErrorMessage(err.message);
+      console.error(err);
     }
     setIsConnecting(false);
   };

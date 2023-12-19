@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { getAddress, isAddress } from "ethers";
 import Image from "next/image";
-import { CircularProgress } from "@mui/material";
 import { ContentPaste, Clear, ArrowBack } from "@mui/icons-material";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
@@ -90,6 +89,7 @@ const NewContact = () => {
       await addContact(addressNewContact, nameNewContact);
     } catch (e) {
       setError("Error. Try Again");
+      console.error(e);
     }
   };
 

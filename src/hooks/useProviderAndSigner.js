@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
 import useMetamask from "./useMetamask";
+import { useToast } from "./useToast";
 
 const useProviderAndSigner = () => {
   const [provider, setProvider] = useState(null);
@@ -11,6 +12,8 @@ const useProviderAndSigner = () => {
     wallet: { address, chainId },
   } = useMetamask();
 
+  const { handleOpenToast } = useToast();
+
   const getProviderAndSigner = async (ethereum) => {
     try {
       const provider = new ethers.BrowserProvider(ethereum);
@@ -19,7 +22,8 @@ const useProviderAndSigner = () => {
       setProvider(provider);
       setSigner(signer);
     } catch (e) {
-      console.log(e);
+      handleOpenToast("error", "Problem getting signer and provider");
+      console.error(e);
     }
   };
 
