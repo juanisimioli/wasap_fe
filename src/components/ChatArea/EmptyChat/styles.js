@@ -16,6 +16,7 @@ const useStyles = makeStyles()((theme) => ({
     color: `${theme.palette.lightGrayishWhite}e0`,
     fontWeight: 500,
     fontSize: 32,
+    marginBottom: -8,
   },
   text: {
     color: `${theme.palette.lightGrayishWhite}e0`,
