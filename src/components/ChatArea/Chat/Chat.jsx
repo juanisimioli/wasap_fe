@@ -12,6 +12,7 @@ const Chat = () => {
   const { classes } = useStyles();
   const { chat } = useWasapContext();
   const [isScrolledToBottom, SetIsScrolledToBottom] = useState(null);
+  const [isFabOnScreen, setIsFabOnScreen] = useState(null);
   const chatRef = useRef(null);
   const { wallet } = useMetamaskContext();
   const { address } = wallet;
@@ -24,9 +25,13 @@ const Chat = () => {
   }, [chat]);
 
   const checkHeight = () => {
-    const isBottom =
-      (chatRef.current.scrollHeight - chatRef.current.clientHeight) * 0.95 <
-      chatRef.current.scrollTop;
+    const { current } = chatRef;
+    const { scrollHeight, clientHeight, scrollTop } = current;
+
+    const isBottom = (scrollHeight - clientHeight) * 0.95 < scrollTop;
+    const renderFabOnScreen = scrollHeight !== clientHeight;
+
+    setIsFabOnScreen(renderFabOnScreen);
 
     if (isBottom) SetIsScrolledToBottom(true);
     if (!isBottom && isScrolledToBottom) SetIsScrolledToBottom(false);
@@ -65,10 +70,12 @@ const Chat = () => {
         ))}
       </div>
 
-      <FabGoToBottom
-        handleClick={goToBottom}
-        isScrolledToBottom={isScrolledToBottom}
-      />
+      {isFabOnScreen && (
+        <FabGoToBottom
+          handleClick={goToBottom}
+          isScrolledToBottom={isScrolledToBottom}
+        />
+      )}
     </>
   );
 };
