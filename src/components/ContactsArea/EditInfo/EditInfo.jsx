@@ -18,11 +18,11 @@ const AddUser = () => {
   const { name, avatar } = userInfo;
 
   const [nameUser, setNameUser] = useState(name);
-  const [cid, setCid] = useState(avatar);
+  const [avatarUser, setAvatarUser] = useState(avatar);
 
   const reset = () => {
     setNameUser(name);
-    setCid(avatar);
+    setAvatarUser(avatar);
   };
 
   const handleSaveInfo = () => {
@@ -31,7 +31,7 @@ const AddUser = () => {
       return;
     }
 
-    updateUserInfo(cid, nameUser);
+    updateUserInfo(avatarUser, nameUser);
   };
 
   const handleChangeNameUser = ({ target }) => {
@@ -45,7 +45,7 @@ const AddUser = () => {
 
     try {
       const ipfsHash = await uploadFileToIpfs(file, setError);
-      setCid(ipfsHash);
+      setAvatarUser(ipfsHash);
     } catch (e) {
       setError("Cannot update image");
     } finally {
@@ -68,7 +68,7 @@ const AddUser = () => {
       <div className={classes.contentContainer}>
         <AvatarEdit
           isUploading={isUploading}
-          cid={cid}
+          avatar={avatarUser}
           onEditAvatar={uploadFile}
         />
 

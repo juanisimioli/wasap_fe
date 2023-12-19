@@ -16,8 +16,7 @@ const RegisterUser = () => {
   const { wallet } = useMetamaskContext();
   const { address, balance } = wallet;
   const [isZeroBalance, setIsZeroBalance] = useState(false);
-  // cid => content identifier IPFS
-  const [cid, setCid] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [name, setName] = useState("");
   const [isTouched, setIsTouched] = useState(false);
   const [error, setError] = useState("");
@@ -32,7 +31,7 @@ const RegisterUser = () => {
 
     try {
       const ipfsHash = await uploadFileToIpfs(file, setError);
-      setCid(ipfsHash);
+      setAvatar(ipfsHash);
     } catch (e) {
       console.log(e);
       setError("Cannot update image");
@@ -41,8 +40,8 @@ const RegisterUser = () => {
     }
   };
 
-  const registerUser = async (name, cid) => {
-    await createAccount(name, cid);
+  const registerUser = async (name, avatar) => {
+    await createAccount(name, avatar);
   };
 
   const handleChangeName = ({ target }) => {
@@ -60,7 +59,7 @@ const RegisterUser = () => {
   const handleRegisterUser = () => {
     if (!canRegister) return;
     if (!isTouched) setIsTouched(true);
-    registerUser(name, cid, address);
+    registerUser(name, avatar);
   };
 
   useEffect(() => {
@@ -84,7 +83,7 @@ const RegisterUser = () => {
 
       <AvatarEdit
         isUploading={isUploading}
-        cid={cid}
+        avatar={avatar}
         onEditAvatar={uploadFile}
       />
 

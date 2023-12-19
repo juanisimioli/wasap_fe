@@ -4,8 +4,8 @@ import { CircularProgress } from "@mui/material";
 import { CameraAlt } from "@mui/icons-material/";
 import { getUrlAvatar } from "@/utils/utils";
 import { useStyles } from "./styles";
-// TODO: check name: cid or avatar
-const AvatarEdit = ({ isUploading, onEditAvatar, cid }) => {
+
+const AvatarEdit = ({ isUploading, onEditAvatar, avatar }) => {
   const inputFile = useRef(null);
 
   const { classes } = useStyles({ isUploading });
@@ -40,7 +40,7 @@ const AvatarEdit = ({ isUploading, onEditAvatar, cid }) => {
             </div>
             <Image
               priority
-              src={getUrlAvatar(cid)}
+              src={getUrlAvatar(avatar)}
               width={150}
               height={150}
               alt="avatar"

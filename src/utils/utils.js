@@ -102,6 +102,7 @@ export const shortAddress = (address) => {
 };
 
 export const getUrlAvatar = (cid) => {
+  // cid => content identifier IPFS
   return cid
     ? `${process.env.NEXT_PUBLIC_AVATAR_URL}${cid}`
     : "/default-user.svg";

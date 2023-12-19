@@ -11,7 +11,7 @@ const ContactList = () => {
 
   return (
     <div className={classes.container}>
-      <div className={classes.list}>
+      <div>
         {contactList?.map(({ name, contactAddress, avatar }) => (
           <ContactCard
             name={name}

@@ -15,14 +15,13 @@ const useStyles = makeStyles()((theme) => ({
     },
     display: "flex",
     flexDirection: "column",
+    justifyContent: "space-between",
   },
-
-  list: {},
 
   legal: {
     color: theme.palette.scrollbar.color,
     fontSize: 13,
-    padding: "8px",
+    padding: 8,
     width: "90%",
     justifySelf: "center",
     alignSelf: "center",
