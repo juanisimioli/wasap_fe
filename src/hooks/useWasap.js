@@ -28,7 +28,7 @@ const useWasap = () => {
   const [chat, setChat] = useState([]);
 
   // USER SELECTION INFORMATION
-  const [contactSelected, selectContact] = useState(null);
+  const [contactSelected, setContactSelected] = useState(null);
   const [contactSelectedData, setContactSelectedData] = useState({
     name: "",
     avatar: "",
@@ -233,6 +233,10 @@ const useWasap = () => {
     );
   };
 
+  const handleSelectContact = (contactAddress) => {
+    setContactSelected(contactAddress);
+  };
+
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
   /////////////////////  useEFFECTS  /////////////////////////
@@ -246,7 +250,7 @@ const useWasap = () => {
   useEffect(() => {
     if (!contract || !address || !isUserRegistered || !isAllowedChainId) return;
     handleGetUserInfo(address);
-  }, [isUserRegistered, contract]);
+  }, [isUserRegistered]);
 
   useEffect(() => {
     if (!contract || !address || !isAllowedChainId) return;
@@ -256,8 +260,8 @@ const useWasap = () => {
   useEffect(() => {
     if (!contract || !address || !isUserRegistered || !isAllowedChainId) return;
     handleGetUserContactList();
-    selectContact(null);
-  }, [isUserRegistered, contract, isAllowedChainId]);
+    setContactSelected(null);
+  }, [isUserRegistered, contract]);
 
   useEffect(() => {
     if (
@@ -373,14 +377,6 @@ const useWasap = () => {
   }, [contract]);
 
   useEffect(() => {
-    if (!contract || !isUserRegistered || !contactSelected) return;
-    contract.on("ContactInfoUpdated", handleContactInfoUpdatedEvent);
-    return () => {
-      contract.off("ContactInfoUpdated", handleContactInfoUpdatedEvent);
-    };
-  }, [contactSelectedData]);
-
-  useEffect(() => {
     if (!contract || !isUserRegistered) return;
     contract.on("ContactAdded", handleContactAddedEvent);
     contract.on("UserInfoUpdated", handleUserInfoUpdatedEvent);
@@ -391,10 +387,13 @@ const useWasap = () => {
   }, [contract, isUserRegistered]);
 
   useEffect(() => {
-    if (!contract) return;
+    if (!contract || !contactSelected) return;
+    contract.on("ContactInfoUpdated", handleContactInfoUpdatedEvent);
     contract.on("MessageSent", handleMessageSentEvent);
-    return () => {
-      contract.off("MessageSent", handleMessageSentEvent);
+    return async () => {
+      await setTimeout(() => {}, 0); // TODO: check this, without this line, sometimes do not subscribe to those events
+      await contract.off("ContactInfoUpdated", handleContactInfoUpdatedEvent);
+      await contract.off("MessageSent", handleMessageSentEvent);
     };
   }, [contactSelectedData]);
 
@@ -415,7 +414,7 @@ const useWasap = () => {
     isProfileOpen,
     setIsProfileOpen,
     contactSelected,
-    selectContact,
+    handleSelectContact,
     checkUserExists,
     createAccount,
     addContact,

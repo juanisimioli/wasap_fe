@@ -5,7 +5,7 @@ import { useStyles } from "./styles";
 
 const ContactCard = ({ avatar, name, address }) => {
   const { classes } = useStyles();
-  const { contactSelected, selectContact } = useWasapContext();
+  const { contactSelected, handleSelectContact } = useWasapContext();
 
   const isSelected = address === contactSelected;
 
@@ -14,7 +14,7 @@ const ContactCard = ({ avatar, name, address }) => {
       className={`${classes.container} ${
         isSelected ? classes.selected : classes.nonSelected
       }`}
-      onClick={() => selectContact(address)}
+      onClick={() => handleSelectContact(address)}
     >
       <div>
         <div className={classes.avatar}>
