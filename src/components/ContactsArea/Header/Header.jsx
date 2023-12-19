@@ -8,21 +8,21 @@ const Header = () => {
   const { classes } = useStyles();
   const {
     userInfo,
-    setIsAddContactOpened,
-    isAddContactOpened,
-    isEditUserOpened,
-    setIsEditUserOpened,
+    setIsNewContactOpen,
+    isNewContactOpen,
+    isProfileOpen,
+    setIsProfileOpen,
   } = useWasapContext();
 
   const handleOpenAddContact = () => {
-    setIsAddContactOpened(true);
+    setIsNewContactOpen(true);
   };
 
   const handleOpenEditUser = () => {
-    setIsEditUserOpened(true);
+    setIsProfileOpen(true);
   };
 
-  if (isAddContactOpened || isEditUserOpened) return null;
+  if (isNewContactOpen || isProfileOpen) return null;
 
   return (
     <header className={classes.header}>

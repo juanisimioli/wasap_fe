@@ -41,8 +41,8 @@ const useWasap = () => {
   const [isUpdatingContactName, setIsUpdatingContactName] = useState(false);
 
   // UI flags
-  const [isAddContactOpened, setIsAddContactOpened] = useState(false);
-  const [isEditUserOpened, setIsEditUserOpened] = useState(false);
+  const [isNewContactOpen, setIsNewContactOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
 
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
@@ -106,7 +106,7 @@ const useWasap = () => {
         contactName
       );
       contactAdded.wait();
-      setIsAddContactOpened(false);
+      setIsNewContactOpen(false);
     } catch (e) {
       console.log(e);
     } finally {
@@ -139,7 +139,7 @@ const useWasap = () => {
     } finally {
       setIsUpdatingUserInfo(false);
       getUserInfo(address);
-      setIsEditUserOpened(false);
+      setIsProfileOpen(false);
     }
   };
 
@@ -228,7 +228,7 @@ const useWasap = () => {
   ////////////////////////////////////////////////////////////
 
   useEffect(() => {
-    if (isAddContactOpened) setIsAddContactOpened(false);
+    if (isNewContactOpen) setIsNewContactOpen(false);
   }, [contract]);
 
   useEffect(() => {
@@ -398,10 +398,10 @@ const useWasap = () => {
     isUpdatingUserInfo,
     isUpdatingContactName,
     isSendingMessage,
-    isAddContactOpened,
-    setIsAddContactOpened,
-    isEditUserOpened,
-    setIsEditUserOpened,
+    isNewContactOpen,
+    setIsNewContactOpen,
+    isProfileOpen,
+    setIsProfileOpen,
     contactSelected,
     selectContact,
     checkUserExists,

@@ -88,48 +88,6 @@ const useStyles = makeStyles()((theme) => ({
     margin: 0,
   },
 
-  verifyButton: {
-    all: "unset",
-    color: theme.palette.lightGray,
-    backgroundColor: theme.palette.deepBlue2,
-    padding: "5px 15px",
-    borderRadius: 8,
-    fontSize: 14,
-    cursor: "pointer",
-
-    "&:hover": {
-      color: theme.palette.white,
-    },
-
-    "&:disabled": {
-      backgroundColor: theme.palette.deepBlueGreen,
-      color: theme.palette.scrollbarColor,
-    },
-  },
-
-  addContactButton: {
-    all: "unset",
-    color: theme.palette.lightGray,
-    backgroundColor: theme.palette.deepBlue2,
-    padding: "5px 15px",
-    borderRadius: "8px",
-    fontSize: 14,
-    cursor: "pointer",
-    minWidth: 87,
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-
-    "&:hover": {
-      color: theme.palette.white,
-    },
-
-    "&:disabled": {
-      backgroundColor: theme.palette.deepBlueGreen,
-      color: theme.palette.scrollbarColor,
-    },
-  },
-
   nameNewContact: {
     display: "flex",
     margin: "24px 0",
@@ -141,10 +99,6 @@ const useStyles = makeStyles()((theme) => ({
     width: 40,
     height: 40,
     marginRight: 15,
-  },
-
-  loader: {
-    color: theme.palette.deepBlue2,
   },
 }));
 

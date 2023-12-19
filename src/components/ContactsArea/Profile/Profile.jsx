@@ -1,19 +1,19 @@
 import { useState } from "react";
-import { CircularProgress } from "@mui/material";
 import { ArrowBack } from "@mui/icons-material";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import Input from "@/components/Utils/Input/Input";
+import ButtonWithLoader from "@/components/Utils/ButtonWithLoader/ButtonWithLoader";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 import { uploadFileToIpfs } from "@/utils/ipfs";
 import { useStyles } from "./styles";
 
-const AddUser = () => {
+const Profile = () => {
   const { classes } = useStyles();
 
   const [isUploading, setIsUploading] = useState(false);
   const [error, setError] = useState("");
 
-  const { setIsEditUserOpened, userInfo, updateUserInfo, isUpdatingUserInfo } =
+  const { setIsProfileOpen, userInfo, updateUserInfo, isUpdatingUserInfo } =
     useWasapContext();
   const { name, avatar } = userInfo;
 
@@ -55,7 +55,7 @@ const AddUser = () => {
 
   const handleCloseEditUser = () => {
     reset();
-    setIsEditUserOpened(false);
+    setIsProfileOpen(false);
   };
 
   return (
@@ -85,21 +85,16 @@ const AddUser = () => {
         <p className={classes.errorMessage}>{error}</p>
 
         <div className={classes.containerAction}>
-          <button
-            className={classes.saveButton}
+          <ButtonWithLoader
+            title="Save"
+            disabled={nameUser.length === 0}
             onClick={handleSaveInfo}
-            disabled={isUpdatingUserInfo}
-          >
-            {isUpdatingUserInfo ? (
-              <CircularProgress size={24} className={classes.loader} />
-            ) : (
-              "Save"
-            )}
-          </button>
+            isLoading={isUpdatingUserInfo}
+          />
         </div>
       </div>
     </div>
   );
 };
 
-export default AddUser;
+export default Profile;

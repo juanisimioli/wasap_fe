@@ -1,10 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { CircularProgress } from "@mui/material";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import Input from "@/components/Utils/Input/Input";
+import ButtonWithLoader from "@/components/Utils/ButtonWithLoader/ButtonWithLoader";
 import AvatarEdit from "@/components/Utils/AvatarEdit/AvatarEdit";
 import FooterInfo from "../FooterInfo/FooterInfo";
 import { uploadFileToIpfs } from "@/utils/ipfs";
@@ -100,17 +100,12 @@ const RegisterUser = () => {
       </div>
 
       {canRegister && (
-        <button
-          className={classes.button}
-          disabled={!canRegister || isCreatingAccount}
+        <ButtonWithLoader
+          title="Register"
+          isLoading={isCreatingAccount}
           onClick={handleRegisterUser}
-        >
-          {isCreatingAccount ? (
-            <CircularProgress size={24} className={classes.loader} />
-          ) : (
-            "Register"
-          )}
-        </button>
+          disabled={!canRegister}
+        />
       )}
 
       {isZeroBalance && (

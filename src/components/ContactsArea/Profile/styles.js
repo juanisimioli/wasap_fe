@@ -56,32 +56,6 @@ const useStyles = makeStyles()((theme) => ({
     fontSize: 14,
     margin: 0,
   },
-
-  saveButton: {
-    all: "unset",
-    color: theme.palette.lightGray,
-    backgroundColor: theme.palette.deepBlue2,
-    padding: "5px 15px",
-    borderRadius: 8,
-    fontSize: 14,
-    cursor: "pointer",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-
-    "&:hover": {
-      color: theme.palette.white,
-    },
-
-    "&:disabled": {
-      backgroundColor: theme.palette.deepBlueGreen,
-      color: theme.palette.scrollbarColor,
-    },
-  },
-
-  loader: {
-    color: theme.palette.deepBlue2,
-  },
 }));
 
 export { useStyles };

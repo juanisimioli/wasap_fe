@@ -6,10 +6,11 @@ import { ContentPaste, Clear, ArrowBack } from "@mui/icons-material";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import Input from "@/components/Utils/Input/Input";
+import ButtonWithLoader from "@/components/Utils/ButtonWithLoader/ButtonWithLoader";
 import { getUrlAvatar } from "@/utils/utils";
 import { useStyles } from "./styles";
 
-const AddUser = () => {
+const NewContact = () => {
   const { classes } = useStyles();
   const [addressNewContact, setAddressNewContact] = useState("");
   const [isValidAddress, setIsValidAddress] = useState(false);
@@ -22,7 +23,7 @@ const AddUser = () => {
   const [error, setError] = useState("");
 
   const {
-    setIsAddContactOpened,
+    setIsNewContactOpen,
     addContact,
     checkUserExists,
     isLoadingCheckingUserExist,
@@ -41,7 +42,7 @@ const AddUser = () => {
   };
 
   const handleCloseAddContact = () => {
-    setIsAddContactOpened(false);
+    setIsNewContactOpen(false);
     reset();
   };
 
@@ -156,16 +157,12 @@ const AddUser = () => {
 
         {!isContactRegistered ? (
           <div className={classes.containerVerify}>
-            <button
-              className={classes.verifyButton}
+            <ButtonWithLoader
+              isLoading={isLoadingCheckingUserExist}
+              title="Verify"
               onClick={handleVerifyAddress}
-              disabled={isLoadingCheckingUserExist || !isValidAddress}
-            >
-              Verify
-            </button>
-            {isLoadingCheckingUserExist && (
-              <CircularProgress size={24} className={classes.loader} />
-            )}
+              disabled={!isValidAddress}
+            />
           </div>
         ) : (
           <>
@@ -190,17 +187,11 @@ const AddUser = () => {
             </div>
 
             <div className={classes.containerVerify}>
-              <button
-                className={classes.addContactButton}
+              <ButtonWithLoader
+                isLoading={isAddingContact}
+                title="Add Contact"
                 onClick={handleAddContact}
-                disabled={isAddingContact}
-              >
-                {isAddingContact ? (
-                  <CircularProgress size={20} className={classes.loader} />
-                ) : (
-                  "Add Contact"
-                )}
-              </button>
+              />
             </div>
           </>
         )}
@@ -209,4 +200,4 @@ const AddUser = () => {
   );
 };
 
-export default AddUser;
+export default NewContact;

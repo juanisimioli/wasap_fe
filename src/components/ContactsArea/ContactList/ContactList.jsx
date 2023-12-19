@@ -4,10 +4,9 @@ import { useStyles } from "./styles";
 
 const ContactList = () => {
   const { classes } = useStyles();
-  const { contactList, isEditUserOpened, isAddContactOpened } =
-    useWasapContext();
+  const { contactList, isProfileOpen, isNewContactOpen } = useWasapContext();
 
-  if (isEditUserOpened || isAddContactOpened) return null;
+  if (isProfileOpen || isNewContactOpen) return null;
 
   return (
     <div className={classes.container}>
