@@ -72,6 +72,12 @@ Now, your MetaMask is configured to connect to the Hardhat network, allowing you
 
 I would love to hear from you! Whether you have questions, feedback, or just want to connect, please don't hesitate to reach out via email at [juanisimioli@gmail.com](mailto:juanisimioli@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/juanisimioli/). Learning together in this community is a wonderful experience, and I'm always open to feedback and collaboration.
 
-## Demo
+## Wasap Demo
 
 (in progress)
+
+## Other DApps Developed by Me:
+
+Aerolineas: This dapp facilitates the purchase of flight tickets using cryptocurrency. Each seat from one destination to another on a specific flight is represented as an NFT. This allows users to perform various actions such as canceling reservations, purchasing tickets, making free transfer reservations, or even reselling tickets at a desired price for others to buy.
+[Aerolineas Front End](https://github.com/juanisimioli/aerolineas_fe)
+[Aerolineas Back End](https://github.com/juanisimioli/aerolineas_be)
