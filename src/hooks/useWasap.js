@@ -208,17 +208,20 @@ const useWasap = () => {
   const handleReadMessages = async () => {
     if (!contactSelected) return;
     const messages = await readMessages(contactSelected);
+
+    // When receiving messages, check if sender have messages that are in status "sending" or "sent" (waiting event from blockchain) and leave those messages on chat.
+    // Validation is made with "text" from last 5 messages sent, I know is not the way to do it, but it's ok for this MVP.
     setMessages((prev) => {
-      const pendingMessages = prev.filter((message) => {
-        console.log(
-          messages?.map((msg) => msg.timestamp).includes(message.timestamp)
-        );
-        return (
+      const pendingMessages = prev.filter(
+        (message) =>
           (message.status === STATUS_MESSAGE.Sending ||
             message.status === STATUS_MESSAGE.Sent) &&
-          messages?.map((msg) => msg.timestamp).includes(message.timestamp)
-        );
-      });
+          !messages
+            ?.map((msg) => msg.text)
+            .slice(-5)
+            .includes(message.text)
+      );
+
       return [...messages, ...pendingMessages];
     });
   };
