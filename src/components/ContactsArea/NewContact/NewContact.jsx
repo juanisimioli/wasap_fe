@@ -74,8 +74,8 @@ const NewContact = () => {
     }
 
     const contactInfo = await getUserInfo(addressNewContact);
-    setNameNewContact(contactInfo[0]);
-    setAvatarNewContact(contactInfo[1]);
+    setNameNewContact(contactInfo.name);
+    setAvatarNewContact(contactInfo.avatar);
     setIsContactRegistered(true);
   };
 

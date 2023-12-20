@@ -174,19 +174,24 @@ const useWasap = () => {
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
 
-  const handleCheckUserExist = async (address) => {
+  const handleCheckUserExistAndUserInfo = async (address) => {
     if (!address) return;
     setIsLoadingCheckingUserExist(true);
-    const response = await checkUserExists(address);
-    setIsUserRegistered(response);
+    const isRegistered = await checkUserExists(address);
+    setIsUserRegistered(isRegistered);
     setIsLoadingCheckingUserExist(false);
+    if (isRegistered) {
+      const userInfo = await getUserInfo(address);
+      if (!userInfo) return;
+      setUserInfo(userInfo);
+    }
   };
 
   const handleGetUserInfo = async (address) => {
     if (!isUserRegistered) return;
     const userInfo = await getUserInfo(address);
     if (!userInfo) return;
-    setUserInfo({ name: userInfo[0], avatar: userInfo[1] });
+    setUserInfo(userInfo);
   };
 
   const handleSetContactSelectedData = () => {
@@ -203,7 +208,19 @@ const useWasap = () => {
   const handleReadMessages = async () => {
     if (!contactSelected) return;
     const messages = await readMessages(contactSelected);
-    setMessages(messages);
+    setMessages((prev) => {
+      const pendingMessages = prev.filter((message) => {
+        console.log(
+          messages?.map((msg) => msg.timestamp).includes(message.timestamp)
+        );
+        return (
+          (message.status === STATUS_MESSAGE.Sending ||
+            message.status === STATUS_MESSAGE.Sent) &&
+          messages?.map((msg) => msg.timestamp).includes(message.timestamp)
+        );
+      });
+      return [...messages, ...pendingMessages];
+    });
   };
 
   const handleGetUserContactList = async () => {
@@ -248,13 +265,8 @@ const useWasap = () => {
   }, [contract]);
 
   useEffect(() => {
-    if (!contract || !address || !isUserRegistered || !isAllowedChainId) return;
-    handleGetUserInfo(address);
-  }, [isUserRegistered, contract]);
-
-  useEffect(() => {
     if (!contract || !address || !isAllowedChainId) return;
-    handleCheckUserExist(address);
+    handleCheckUserExistAndUserInfo(address);
   }, [contract]);
 
   useEffect(() => {
@@ -320,7 +332,7 @@ const useWasap = () => {
 
   const handleCreateAccountEvent = (user) => {
     if (getAddress(user) === getAddress(address)) {
-      handleCheckUserExist(address);
+      handleCheckUserExistAndUserInfo(address);
       setIsCreatingAccount(false);
     }
   };

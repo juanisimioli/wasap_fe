@@ -104,7 +104,7 @@ const RegisterUser = () => {
           title="Register"
           isLoading={isCreatingAccount}
           onClick={handleRegisterUser}
-          disabled={!canRegister}
+          disabled={!canRegister || isUploading}
         />
       )}
 
