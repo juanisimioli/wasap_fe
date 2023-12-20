@@ -8,11 +8,9 @@ Step into the future of messaging with our current chat app version deployed in 
 
 It's important to note that the current version lacks the proxy pattern, a feature I will be working on in January 2024. Once implemented, this enhancement will enable continuous updates and new features, including the highly anticipated ability for users to seamlessly send money to contacts directly within the application. Join me in shaping the next era of decentralized communication!
 
-dApp for educational & learning purposes
+This dApp is developed for educational & learning purposes.
 
 <br/>
-
-**Note**: Please be aware that actual version 11.6.1 of MetaMask has reported bugs. For optimal performance, we strongly recommend using MetaMask version 11.5.2. Instructions on how to install this version can be found [here](https://support.metamask.io/hc/en-us/articles/360016336611-Revert-back-to-earlier-version-or-add-custom-build-to-Chrome).
 
 ## dApp
 
@@ -27,6 +25,8 @@ This project is crafted with cutting-edge technologies to ensure a robust and mo
 You can experience it live at [www.wasap.net.ar](https://www.wasap.net.ar). Please ensure you have MetaMask installed to interact with the dapp and use Sepolia Testnet.
 
 You can also explore the backend repository [here](https://github.com/juanisimioli/wasap_be) (built with Hardhat 2.19 + Solidity 0.8.18).
+
+**Note**: Please be aware that actual version 11.6.1 of MetaMask has reported bugs. For optimal performance, we strongly recommend using MetaMask version 11.5.2. Instructions on how to install this version can be found [here](https://support.metamask.io/hc/en-us/articles/360016336611-Revert-back-to-earlier-version-or-add-custom-build-to-Chrome).
 
 **Note**: In the `config.js` file, you have the flexibility to tailor the allowed chain IDs for various testnets or networks. Feel free to customize these settings to align with your specific blockchain environment. Additionally, the file allows you to effortlessly update contract addresses based on your preferences. Simply modify the corresponding fields to ensure seamless integration with your chosen blockchain configurations.
 
