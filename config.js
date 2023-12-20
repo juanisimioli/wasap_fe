@@ -10,5 +10,5 @@ export const wasapContractAddress = {
   // LOCALHOST deployed contract
   31337: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
   // SEPOLIA deployed contract
-  11155111: "0x5fE521E62B90592b93E7bd8cC33939668b766CF2",
+  11155111: "0x250C098a74F39641fd4e7E9F566B40597Ac34335",
 };
