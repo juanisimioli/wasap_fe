@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { ethers } from "ethers";
-import useMetamask from "./useMetamask";
+import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import { useToast } from "./useToast";
 
 const useProviderAndSigner = () => {
@@ -10,7 +10,7 @@ const useProviderAndSigner = () => {
 
   const {
     wallet: { address, chainId },
-  } = useMetamask();
+  } = useMetamaskContext();
 
   const { handleOpenToast } = useToast();
 

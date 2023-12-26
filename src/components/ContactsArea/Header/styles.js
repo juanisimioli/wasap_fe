@@ -16,6 +16,12 @@ const useStyles = makeStyles()((theme) => ({
     paddingRight: 20,
   },
 
+  left: {
+    display: "flex",
+    alignItems: "center",
+    gap: 8,
+  },
+
   avatar: {
     borderRadius: "50%",
     overflow: "hidden",

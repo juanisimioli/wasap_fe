@@ -118,9 +118,19 @@ const NewContact = () => {
     setError("");
   };
 
+  const closeOnEscape = (event) => {
+    const { key } = event;
+    if (key === "Escape") handleCloseAddContact();
+  };
+
   useEffect(() => {
     validateAddress();
   }, [addressNewContact]);
+
+  useEffect(() => {
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   return (
     <div className={classes.container}>

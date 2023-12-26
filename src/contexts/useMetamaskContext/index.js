@@ -15,6 +15,7 @@ export const MetamaskContextProvider = ({ children }) => {
     isConnecting,
     connectMetaMask,
     clearError,
+    updateBalance,
   } = useMetamask();
 
   const value = {
@@ -26,6 +27,7 @@ export const MetamaskContextProvider = ({ children }) => {
     isConnecting,
     connectMetaMask,
     clearError,
+    updateBalance,
   };
 
   return (

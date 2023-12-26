@@ -8,12 +8,14 @@ import { calculateChat, JsDateToEpoch, playNotification } from "@/utils/utils";
 import { wasapContractAddress } from "../../config";
 import { STATUS_MESSAGE } from "@/utils/utils";
 import Wasap from "../../contract/Wasap.json";
+import { PAYMENTS_ENABLED } from "../../config";
 
 const useWasap = () => {
   const { signer } = useProviderAndSigner();
   const {
     wallet: { address, chainId },
     isAllowedChainId,
+    updateBalance,
   } = useMetamaskContext();
 
   const { handleOpenToast } = useToast();
@@ -24,7 +26,8 @@ const useWasap = () => {
   const [isUserRegistered, setIsUserRegistered] = useState(null);
   const [userInfo, setUserInfo] = useState(null);
   const [contactList, setContactList] = useState([]);
-  const [messages, setMessages] = useState([]);
+  const [texts, setTexts] = useState([]);
+  const [payments, setPayments] = useState([]);
   const [chat, setChat] = useState([]);
 
   // USER SELECTION INFORMATION
@@ -39,7 +42,8 @@ const useWasap = () => {
     useState(false);
   const [isCreatingAccount, setIsCreatingAccount] = useState(false);
   const [isAddingContact, setIsAddingContact] = useState(false);
-  const [isSendingMessage, setIsSendingMessage] = useState(false);
+  const [isSendingText, setIsSendingText] = useState(false);
+  const [isSendingPayment, setIsSendingPayment] = useState(false);
   const [isUpdatingUserInfo, setIsUpdatingUserInfo] = useState(false);
   const [isUpdatingContactName, setIsUpdatingContactName] = useState(false);
 
@@ -80,11 +84,21 @@ const useWasap = () => {
     }
   };
 
-  const readMessages = async (contact) => {
+  const readTexts = async (contact) => {
     try {
-      return await contract.readMessages(contact);
+      return await contract.readTexts(contact);
     } catch (e) {
-      handleOpenToast("error", "Problem reading messages");
+      handleOpenToast("error", "Problem reading text messages");
+      console.error(e);
+    }
+  };
+
+  const readPayments = async (contact) => {
+    if (!PAYMENTS_ENABLED) return;
+    try {
+      return await contract.readPayments(contact);
+    } catch (e) {
+      handleOpenToast("error", "Problem reading payments");
       console.error(e);
     }
   };
@@ -123,19 +137,39 @@ const useWasap = () => {
     }
   };
 
-  const sendMessage = async (contactSelected, text) => {
+  const sendText = async (contactSelected, text) => {
     const timestamp = JsDateToEpoch();
-    updateMessageStatusToSending(timestamp, text);
-    setIsSendingMessage(true);
+    updateTextStatusToSending(timestamp, text);
+    setIsSendingText(true);
     try {
-      const messageSent = await contract.sendMessage(contactSelected, text);
-      updateMessageStatusToSent(timestamp);
-      messageSent.wait();
+      const textSent = await contract.sendText(contactSelected, text);
+      updateTextStatusToSent(timestamp);
+      textSent.wait();
     } catch (e) {
-      handleOpenToast("error", "Problem sending message");
+      handleOpenToast("error", "Problem sending text message");
       console.error(e);
     } finally {
-      setIsSendingMessage(false);
+      setIsSendingText(false);
+    }
+  };
+
+  const sendPayment = async (_contactSelected, _amount) => {
+    if (!PAYMENTS_ENABLED) return;
+    const timestamp = JsDateToEpoch();
+    updatePaymentStatusToSending(timestamp, _amount);
+    setIsSendingPayment(true);
+
+    try {
+      const paymentSent = await contract.sendPayment(_contactSelected, {
+        value: _amount,
+      });
+      updatePaymentStatusToSent(timestamp);
+      paymentSent.wait();
+    } catch (e) {
+      handleOpenToast("error", "Problem sending payment");
+      console.error(e);
+    } finally {
+      setIsSendingPayment(false);
     }
   };
 
@@ -205,24 +239,47 @@ const useWasap = () => {
     });
   };
 
-  const handleReadMessages = async () => {
+  const handleReadTexts = async () => {
     if (!contactSelected) return;
-    const messages = await readMessages(contactSelected);
+    const texts = await readTexts(contactSelected);
+
+    // When receiving text messages, check if sender have text messages that are in status "sending" or "sent" (waiting event from blockchain) and leave those messages on chat.
+    // Validation is made with "text" from last 5 messages sent, I know is not the way to do it, but it's ok for this MVP.
+    setTexts((prev) => {
+      const pendingTexts = prev.filter(
+        (text) =>
+          (text.status === STATUS_MESSAGE.Sending ||
+            text.status === STATUS_MESSAGE.Sent) &&
+          !texts
+            ?.map((msg) => msg.text)
+            .slice(-5)
+            .includes(text.text)
+      );
+
+      return [...texts, ...pendingTexts];
+    });
+  };
+
+  const handleReadPayments = async () => {
+    if (!contactSelected) return;
+    const payments = await readPayments(contactSelected);
+
+    if (!payments) return;
 
     // When receiving messages, check if sender have messages that are in status "sending" or "sent" (waiting event from blockchain) and leave those messages on chat.
     // Validation is made with "text" from last 5 messages sent, I know is not the way to do it, but it's ok for this MVP.
-    setMessages((prev) => {
-      const pendingMessages = prev.filter(
-        (message) =>
-          (message.status === STATUS_MESSAGE.Sending ||
-            message.status === STATUS_MESSAGE.Sent) &&
-          !messages
+    setPayments((prev) => {
+      const pendingPayments = prev.filter(
+        (payment) =>
+          (payment.status === STATUS_MESSAGE.Sending ||
+            payment.status === STATUS_MESSAGE.Sent) &&
+          !payments
             ?.map((msg) => msg.text)
             .slice(-5)
-            .includes(message.text)
+            .includes(payment.text)
       );
 
-      return [...messages, ...pendingMessages];
+      return [...payments, ...pendingPayments];
     });
   };
 
@@ -231,8 +288,8 @@ const useWasap = () => {
     setContactList(contactList);
   };
 
-  const updateMessageStatusToSending = (timestamp, text) => {
-    setMessages((prev) => [
+  const updateTextStatusToSending = (timestamp, text) => {
+    setTexts((prev) => [
       ...prev,
       {
         text,
@@ -243,12 +300,34 @@ const useWasap = () => {
     ]);
   };
 
-  const updateMessageStatusToSent = (timestamp) => {
-    setMessages((prev) =>
-      prev.map((message) =>
-        message.timestamp === timestamp
-          ? { ...message, status: STATUS_MESSAGE.Sent }
-          : message
+  const updateTextStatusToSent = (timestamp) => {
+    setTexts((prev) =>
+      prev.map((text) =>
+        text.timestamp === timestamp
+          ? { ...text, status: STATUS_MESSAGE.Sent }
+          : text
+      )
+    );
+  };
+
+  const updatePaymentStatusToSending = (timestamp, amount) => {
+    setPayments((prev) => [
+      ...prev,
+      {
+        amount,
+        status: STATUS_MESSAGE.Sending,
+        sender: getAddress(address),
+        timestamp,
+      },
+    ]);
+  };
+
+  const updatePaymentStatusToSent = (timestamp) => {
+    setPayments((prev) =>
+      prev.map((payment) =>
+        payment.timestamp === timestamp
+          ? { ...payment, status: STATUS_MESSAGE.Sent }
+          : payment
       )
     );
   };
@@ -287,7 +366,8 @@ const useWasap = () => {
       !contactSelected
     )
       return;
-    handleReadMessages();
+    handleReadTexts();
+    handleReadPayments();
     if (isUpdatingContactName) setIsUpdatingContactName(false);
   }, [contactSelected]);
 
@@ -300,8 +380,8 @@ const useWasap = () => {
       !contactSelected
     )
       return;
-    setChat(calculateChat(messages));
-  }, [messages]);
+    setChat(calculateChat([...texts, ...payments]));
+  }, [texts, payments]);
 
   useEffect(() => {
     if (
@@ -346,7 +426,26 @@ const useWasap = () => {
     }
   };
 
-  const handleMessageSentEvent = (user, contact) => {
+  const handleTextSentEvent = (user, contact) => {
+    const userAddress = getAddress(user);
+    const contactAddress = getAddress(contact);
+    if (
+      getAddress(contactSelected) === userAddress &&
+      getAddress(address) === contactAddress
+    ) {
+      // user is receiving text message, so play notification
+      handleReadTexts();
+      playNotification();
+    } else if (
+      getAddress(address) === userAddress &&
+      getAddress(contactSelected) === contactAddress
+    ) {
+      // user sent text message and only update chat
+      handleReadTexts();
+    }
+  };
+
+  const handlePaymentSentEvent = (user, contact) => {
     const userAddress = getAddress(user);
     const contactAddress = getAddress(contact);
     if (
@@ -354,15 +453,16 @@ const useWasap = () => {
       getAddress(address) === contactAddress
     ) {
       // user is receiving message, so play notification
-      handleReadMessages();
+      handleReadPayments();
       playNotification();
     } else if (
       getAddress(address) === userAddress &&
       getAddress(contactSelected) === contactAddress
     ) {
       // user sent message and only update chat
-      handleReadMessages();
+      handleReadPayments();
     }
+    updateBalance();
   };
 
   const handleUserInfoUpdatedEvent = (user) => {
@@ -405,11 +505,13 @@ const useWasap = () => {
   useEffect(() => {
     if (!contract || !contactSelected) return;
     contract.on("ContactInfoUpdated", handleContactInfoUpdatedEvent);
-    contract.on("MessageSent", handleMessageSentEvent);
+    contract.on("TextSent", handleTextSentEvent);
+    contract.on("PaymentSent", handlePaymentSentEvent);
     return async () => {
       await setTimeout(() => {}, 0); // TODO: check this, without this line, sometimes do not subscribe to those events
       await contract.off("ContactInfoUpdated", handleContactInfoUpdatedEvent);
-      await contract.off("MessageSent", handleMessageSentEvent);
+      await contract.off("TextSent", handleTextSentEvent);
+      await contract.off("PaymentSent", handlePaymentSentEvent);
     };
   }, [contactSelected]);
 
@@ -424,7 +526,8 @@ const useWasap = () => {
     isLoadingCheckingUserExist,
     isUpdatingUserInfo,
     isUpdatingContactName,
-    isSendingMessage,
+    isSendingText,
+    isSendingPayment,
     isNewContactOpen,
     setIsNewContactOpen,
     isProfileOpen,
@@ -434,7 +537,8 @@ const useWasap = () => {
     checkUserExists,
     createAccount,
     addContact,
-    sendMessage,
+    sendText,
+    sendPayment,
     getUserInfo,
     updateContactName,
     updateUserInfo,

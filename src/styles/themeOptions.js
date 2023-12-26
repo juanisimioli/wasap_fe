@@ -15,6 +15,7 @@ const themeOptions = {
     lightGray2: "#182229EE",
     errorRed: "#ED5A6B",
     white: "#FBFEFF",
+    blueish: "#1D5678",
   },
 };
 

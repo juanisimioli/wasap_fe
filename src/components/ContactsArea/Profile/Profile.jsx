@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ArrowBack } from "@mui/icons-material";
 import { useWasapContext } from "@/contexts/useWasapContext";
 import Input from "@/components/Utils/Input/Input";
@@ -58,6 +58,16 @@ const Profile = () => {
     reset();
     setIsProfileOpen(false);
   };
+
+  const closeOnEscape = (event) => {
+    const { key } = event;
+    if (key === "Escape") handleCloseEditUser();
+  };
+
+  useEffect(() => {
+    window.addEventListener("keydown", closeOnEscape);
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, []);
 
   return (
     <div className={classes.container}>

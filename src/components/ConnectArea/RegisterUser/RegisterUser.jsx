@@ -95,6 +95,7 @@ const RegisterUser = () => {
           placeholder="Your name"
           maxLength={25}
           width={250}
+          triggerFocus={avatar}
         />
         <p className={classes.error}>{error}</p>
       </div>

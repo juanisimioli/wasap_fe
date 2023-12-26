@@ -1,8 +1,8 @@
 import { CircularProgress } from "@mui/material";
 import { useStyles } from "./styles";
 
-const ButtonWithLoader = ({ title, isLoading, onClick, disabled }) => {
-  const { classes } = useStyles();
+const ButtonWithLoader = ({ title, isLoading, onClick, disabled, isSmall }) => {
+  const { classes } = useStyles({ isSmall });
 
   return (
     <button

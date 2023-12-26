@@ -1,6 +1,6 @@
 import { makeStyles } from "tss-react/mui";
 
-const useStyles = makeStyles()((theme) => ({
+const useStyles = makeStyles()((theme, { isSmall }) => ({
   button: {
     all: "unset",
     color: theme.palette.lightGray,
@@ -13,7 +13,7 @@ const useStyles = makeStyles()((theme) => ({
     alignItems: "center",
     justifyContent: "center",
     gap: 16,
-    padding: 12,
+    padding: isSmall ? 6 : 12,
     minWidth: 60,
 
     "&:disabled": {

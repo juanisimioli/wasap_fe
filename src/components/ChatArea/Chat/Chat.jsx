@@ -1,44 +1,57 @@
 "use client";
-import { useRef, useEffect, useState } from "react";
+import { useRef } from "react";
 import { getAddress } from "ethers";
 import { useMetamaskContext } from "@/contexts/useMetamaskContext";
 import { useWasapContext } from "@/contexts/useWasapContext";
-import Bubble from "@/components/ChatArea/Bubble/Bubble";
+import Text from "@/components/ChatArea/Bubble/Text/Text";
+import Payment from "../Bubble/Payment/Payment";
 import DateOnChat from "../DateOnChat/DateOnChat";
 import FabGoToBottom from "../FabGoToBottom/FabGoToBottom";
+import useGoToBottom from "@/hooks/useGoToBottom";
 import { useStyles } from "./styles";
 
 const Chat = () => {
   const { classes } = useStyles();
   const { chat } = useWasapContext();
-  const [isScrolledToBottom, SetIsScrolledToBottom] = useState(null);
-  const [isFabOnScreen, setIsFabOnScreen] = useState(null);
-  const chatRef = useRef(null);
   const { wallet } = useMetamaskContext();
   const { address } = wallet;
+  const chatRef = useRef(null);
+  const { isFabOnScreen, checkHeight, goToBottom, isScrolledToBottom } =
+    useGoToBottom(chatRef, chat);
 
-  useEffect(() => {
-    // Scroll to the bottom of the specific div
-    if (chatRef.current) {
-      goToBottom();
+  const renderTextOrPayment = ({ text, amount, sender, time, status }, idx) => {
+    let message;
+
+    switch (true) {
+      case Boolean(text):
+        message = (
+          <Text
+            key={`bubble_text_${idx}`}
+            text={text}
+            isSender={getAddress(sender) === getAddress(address)}
+            isFirstMsgGroup={!idx}
+            time={time}
+            status={status}
+          />
+        );
+        break;
+      case Boolean(amount):
+        message = (
+          <Payment
+            key={`bubble_payment_${idx}`}
+            amount={amount}
+            isSender={getAddress(sender) === getAddress(address)}
+            isFirstMsgGroup={!idx}
+            time={time}
+            status={status}
+          />
+        );
+        break;
+      default:
+        message = null;
     }
-  }, [chat]);
 
-  const checkHeight = () => {
-    const { current } = chatRef;
-    const { scrollHeight, clientHeight, scrollTop } = current;
-
-    const isBottom = (scrollHeight - clientHeight) * 0.95 < scrollTop;
-    const renderFabOnScreen = scrollHeight !== clientHeight;
-
-    setIsFabOnScreen(renderFabOnScreen);
-
-    if (isBottom) SetIsScrolledToBottom(true);
-    if (!isBottom && isScrolledToBottom) SetIsScrolledToBottom(false);
-  };
-
-  const goToBottom = () => {
-    chatRef.current.scrollTop = chatRef.current.scrollHeight;
+    return message;
   };
 
   return (
@@ -51,18 +64,7 @@ const Chat = () => {
             {messagesGroupedByDate.groups?.map(
               (messagesGroupedByContiguousSender, idx) => (
                 <div className={classes.groupSender} key={`groupBubble_${idx}`}>
-                  {messagesGroupedByContiguousSender.map(
-                    ({ text, sender, time, status }, idx) => (
-                      <Bubble
-                        key={`bubble_${idx}`}
-                        text={text}
-                        isSender={getAddress(sender) === getAddress(address)}
-                        isFirstMsgGroup={!idx}
-                        time={time}
-                        status={status}
-                      />
-                    )
-                  )}
+                  {messagesGroupedByContiguousSender.map(renderTextOrPayment)}
                 </div>
               )
             )}

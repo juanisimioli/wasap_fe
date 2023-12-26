@@ -13,12 +13,6 @@ const useStyles = makeStyles()((theme) => ({
     gap: 8,
     padding: 16,
   },
-
-  iconSendMessage: {
-    color: theme.palette.grayBlue,
-    margin: 8,
-    cursor: "pointer",
-  },
 }));
 
 export { useStyles };

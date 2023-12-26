@@ -84,21 +84,44 @@ export const groupMessagesByDate = (messages) => {
 
 export const assignStatusToAllMessages = (messages) => {
   return messages.map(
-    ({ text, sender, timestamp, status = STATUS_MESSAGE.Delivered }) => {
-      return { text, sender, timestamp, status };
+    ({
+      text,
+      amount,
+      sender,
+      timestamp,
+      status = STATUS_MESSAGE.Delivered,
+    }) => {
+      return { text, amount, sender, timestamp, status };
     }
   );
 };
 
+export const orderMessagesByTimeStamp = (messages) => {
+  messages.sort((a, b) => Number(a.timestamp) - Number(b.timestamp));
+  return messages;
+};
+
 export const calculateChat = (messages) => {
   return groupMessagesBySender(
-    groupMessagesByDate(breakDownTimestamp(assignStatusToAllMessages(messages)))
+    groupMessagesByDate(
+      breakDownTimestamp(
+        assignStatusToAllMessages(orderMessagesByTimeStamp(messages))
+      )
+    )
   );
 };
 
 export const shortAddress = (address) => {
   if (!address || typeof address !== "string") return;
   return `${address.slice(0, 6)}...${address.slice(address.length - 4)}`;
+};
+
+export const shortBalance = (balance) => {
+  if (!balance || typeof balance !== "string") return;
+  const [integerPart, decimalPart] = balance.split(".");
+
+  const decimalShort = decimalPart.slice(0, 4);
+  return `${integerPart}.${decimalShort}`;
 };
 
 export const getUrlAvatar = (cid) => {

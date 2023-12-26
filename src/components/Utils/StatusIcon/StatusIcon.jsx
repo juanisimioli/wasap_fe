@@ -1,6 +1,7 @@
-export const Sending = ({ className }) => (
+import { STATUS_MESSAGE } from "@/utils/utils";
+
+const Sending = () => (
   <svg
-    className={className}
     viewBox="0 0 16 15"
     width="16"
     preserveAspectRatio="xMidYMid meet"
@@ -17,9 +18,8 @@ export const Sending = ({ className }) => (
   </svg>
 );
 
-export const Sent = ({ className }) => (
+const Sent = () => (
   <svg
-    className={className}
     viewBox="0 0 12 11"
     height="11"
     width="16"
@@ -34,9 +34,8 @@ export const Sent = ({ className }) => (
   </svg>
 );
 
-export const Delivered = ({ className }) => (
+const Delivered = () => (
   <svg
-    className={className}
     viewBox="0 0 16 11"
     height="11"
     width="16"
@@ -50,3 +49,25 @@ export const Delivered = ({ className }) => (
     ></path>
   </svg>
 );
+
+const StatusIcon = ({ status }) => {
+  let icon;
+
+  switch (status) {
+    case STATUS_MESSAGE.Sending:
+      icon = <Sending />;
+      break;
+    case STATUS_MESSAGE.Sent:
+      icon = <Sent />;
+      break;
+    case STATUS_MESSAGE.Delivered:
+      icon = <Delivered />;
+      break;
+    default:
+      icon = null;
+  }
+
+  return icon;
+};
+
+export default StatusIcon;

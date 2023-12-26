@@ -1,3 +1,4 @@
+import { useRef, useEffect } from "react";
 import { useStyles } from "./styles";
 
 const Input = ({
@@ -10,12 +11,23 @@ const Input = ({
   fontSize,
   maxLength,
   disabled,
+  isNumber = false,
+  triggerFocus,
 }) => {
   const { classes } = useStyles({ width, fontSize });
 
+  const inputRef = useRef(null);
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [triggerFocus]);
+
   return (
     <input
-      className={`${classes.input} ${error ? classes.error : ""}`}
+      ref={inputRef}
+      className={`${classes.input} ${error ? classes.error : ""} ${
+        isNumber ? classes.isNumber : ""
+      }`}
       placeholder={placeholder}
       onChange={onChange}
       value={value}

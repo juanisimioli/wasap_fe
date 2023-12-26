@@ -30,6 +30,12 @@ const useStyles = makeStyles()((theme, { width, fontSize }) => ({
       color: theme.palette.gray,
     },
   },
+
+  isNumber: {
+    textAlign: "end",
+    padding: 14,
+    backgroundColor: theme.palette.deepBlue,
+  },
 }));
 
 export { useStyles };

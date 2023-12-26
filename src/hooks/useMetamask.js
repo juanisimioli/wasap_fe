@@ -68,6 +68,17 @@ const useMetamask = () => {
     [_updateWallet]
   );
 
+  const updateBalance = async () => {
+    const balance = formatBalance(
+      await window.ethereum.request({
+        method: "eth_getBalance",
+        params: [wallet.address, "latest"],
+      })
+    );
+
+    setWallet((prev) => ({ ...prev, balance }));
+  };
+
   /**
    * This logic checks if MetaMask is installed. If it is, some event handlers are set up
    * to update the wallet state when MetaMask changes. The function returned by useEffect
@@ -123,6 +134,7 @@ const useMetamask = () => {
     isConnecting,
     connectMetaMask,
     clearError,
+    updateBalance,
   };
 };
 
