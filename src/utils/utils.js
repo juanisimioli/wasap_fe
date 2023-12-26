@@ -2,6 +2,7 @@ export const STATUS_MESSAGE = {
   Sending: 0,
   Sent: 1,
   Delivered: 2,
+  Rejected: 3,
 };
 
 export const time2CharLong = (time) => {

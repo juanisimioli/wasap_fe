@@ -5,7 +5,7 @@ const useStyles = makeStyles()((theme, { showBalance }) => ({
     display: "flex",
     alignItems: "center",
     color: showBalance ? theme.palette.lightGray : theme.palette.gray,
-    transition: "opacity 0.2s ease",
+    transition: "opacity 0.1s ease",
   },
   fadeOut: {
     opacity: 0,

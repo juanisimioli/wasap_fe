@@ -29,7 +29,6 @@ const useStyles = makeStyles()((theme, { isSender, isFirstMsgGroup }) => ({
     display: "flex",
     justifyContent: "flex-end",
     flexDirection: "column",
-    gap: 6,
   },
 
   token: {
@@ -67,10 +66,9 @@ const useStyles = makeStyles()((theme, { isSender, isFirstMsgGroup }) => ({
 
   timeStatus: {
     display: "flex",
-    paddingBottom: 5,
     paddingRight: isSender ? 0 : 8,
     justifyContent: "flex-end",
-    height: 12,
+    alignItems: "end",
   },
 
   time: {
@@ -78,17 +76,16 @@ const useStyles = makeStyles()((theme, { isSender, isFirstMsgGroup }) => ({
     fontSize: 11,
     color: theme.palette.lightGrayishWhite,
     margin: 0,
-    alignSelf: "end",
-    marginBottom: -7,
   },
 
   status: {
     color: theme.palette.lightGrayishWhite,
     fontSize: 17,
     opacity: 0.68,
+    height: 20,
 
     "& svg": {
-      margin: "0 4px 8px 3px",
+      margin: "0 4px 0px 3px",
     },
   },
 }));

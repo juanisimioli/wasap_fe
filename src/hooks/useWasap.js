@@ -115,8 +115,14 @@ const useWasap = () => {
       const createAccount = await contract.createAccount(_name, _avatar);
       createAccount.wait();
     } catch (e) {
-      handleOpenToast("error", "Problem creating account");
-      console.error(e);
+      if (e?.info?.error?.code === 4001) {
+        handleOpenToast("error", "Transaction rejected");
+      } else {
+        handleOpenToast("error", "Problem creating account");
+        console.error(e);
+      }
+
+      setIsCreatingAccount(false);
     }
   };
 
@@ -130,15 +136,19 @@ const useWasap = () => {
       contactAdded.wait();
       setIsNewContactOpen(false);
     } catch (e) {
-      handleOpenToast("error", "Problem adding contact");
-      console.error(e);
+      if (e?.info?.error?.code === 4001) {
+        handleOpenToast("error", "Transaction rejected");
+      } else {
+        handleOpenToast("error", "Problem adding contact");
+        console.error(e);
+      }
     } finally {
       setIsAddingContact(false);
     }
   };
 
   const sendText = async (contactSelected, text) => {
-    const timestamp = JsDateToEpoch();
+    const timestamp = JsDateToEpoch() + 59;
     updateTextStatusToSending(timestamp, text);
     setIsSendingText(true);
     try {
@@ -146,31 +156,55 @@ const useWasap = () => {
       updateTextStatusToSent(timestamp);
       textSent.wait();
     } catch (e) {
-      handleOpenToast("error", "Problem sending text message");
-      console.error(e);
+      if (e?.info?.error?.code === 4001) {
+        handleOpenToast("error", "Transaction rejected");
+        updateTextStatusToRejected(timestamp);
+      } else {
+        handleOpenToast("error", "Problem sending text message");
+        console.error(e);
+      }
     } finally {
       setIsSendingText(false);
     }
   };
 
-  const sendPayment = async (_contactSelected, _amount) => {
+  const resendText = (contactSelected, text) => {
+    setTexts((prev) =>
+      prev.filter((text) => text.status !== STATUS_MESSAGE.Rejected)
+    );
+    sendText(contactSelected, text);
+  };
+
+  const sendPayment = async (contactSelected, amount) => {
     if (!PAYMENTS_ENABLED) return;
-    const timestamp = JsDateToEpoch();
-    updatePaymentStatusToSending(timestamp, _amount);
+    const timestamp = JsDateToEpoch() + 59;
+    updatePaymentStatusToSending(timestamp, amount);
     setIsSendingPayment(true);
 
     try {
-      const paymentSent = await contract.sendPayment(_contactSelected, {
-        value: _amount,
+      const paymentSent = await contract.sendPayment(contactSelected, {
+        value: amount,
       });
       updatePaymentStatusToSent(timestamp);
       paymentSent.wait();
     } catch (e) {
-      handleOpenToast("error", "Problem sending payment");
-      console.error(e);
+      if (e?.info?.error?.code === 4001) {
+        handleOpenToast("error", "Transaction rejected");
+        updatePaymentStatusToRejected(timestamp);
+      } else {
+        handleOpenToast("error", "Problem sending payment");
+        console.error(e);
+      }
     } finally {
       setIsSendingPayment(false);
     }
+  };
+
+  const resendPayment = (contactSelected, amount) => {
+    setPayments((prev) =>
+      prev.filter((payment) => payment.status !== STATUS_MESSAGE.Rejected)
+    );
+    sendPayment(contactSelected, amount);
   };
 
   const updateUserInfo = async (_userAvatar, _userName) => {
@@ -179,8 +213,12 @@ const useWasap = () => {
       const update = await contract.updateUserInfo(_userAvatar, _userName);
       update.wait();
     } catch (e) {
-      handleOpenToast("error", "Problem updating user info");
-      console.error(e);
+      if (e?.info?.error?.code === 4001) {
+        handleOpenToast("error", "Transaction rejected");
+      } else {
+        handleOpenToast("error", "Problem updating user info");
+        console.error(e);
+      }
     } finally {
       setIsUpdatingUserInfo(false);
       getUserInfo(address);
@@ -197,8 +235,12 @@ const useWasap = () => {
       );
       update.wait();
     } catch (e) {
-      handleOpenToast("error", "Problem updating contact info");
-      console.error(e);
+      if (e?.info?.error?.code === 4001) {
+        handleOpenToast("error", "Transaction rejected");
+      } else {
+        handleOpenToast("error", "Problem updating contact info");
+        console.error(e);
+      }
     }
   };
 
@@ -310,6 +352,16 @@ const useWasap = () => {
     );
   };
 
+  const updateTextStatusToRejected = (timestamp) => {
+    setTexts((prev) =>
+      prev.map((text) =>
+        text.timestamp === timestamp
+          ? { ...text, status: STATUS_MESSAGE.Rejected }
+          : text
+      )
+    );
+  };
+
   const updatePaymentStatusToSending = (timestamp, amount) => {
     setPayments((prev) => [
       ...prev,
@@ -327,6 +379,16 @@ const useWasap = () => {
       prev.map((payment) =>
         payment.timestamp === timestamp
           ? { ...payment, status: STATUS_MESSAGE.Sent }
+          : payment
+      )
+    );
+  };
+
+  const updatePaymentStatusToRejected = (timestamp) => {
+    setPayments((prev) =>
+      prev.map((payment) =>
+        payment.timestamp === timestamp
+          ? { ...payment, status: STATUS_MESSAGE.Rejected }
           : payment
       )
     );
@@ -538,7 +600,9 @@ const useWasap = () => {
     createAccount,
     addContact,
     sendText,
+    resendText,
     sendPayment,
+    resendPayment,
     getUserInfo,
     updateContactName,
     updateUserInfo,

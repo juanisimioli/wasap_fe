@@ -1,4 +1,6 @@
 import { STATUS_MESSAGE } from "@/utils/utils";
+import { Clear } from "@mui/icons-material";
+import { useStyles } from "./styles";
 
 const Sending = () => (
   <svg
@@ -51,6 +53,7 @@ const Delivered = () => (
 );
 
 const StatusIcon = ({ status }) => {
+  const { classes } = useStyles();
   let icon;
 
   switch (status) {
@@ -62,6 +65,9 @@ const StatusIcon = ({ status }) => {
       break;
     case STATUS_MESSAGE.Delivered:
       icon = <Delivered />;
+      break;
+    case STATUS_MESSAGE.Rejected:
+      icon = <Clear className={classes.rejected} />;
       break;
     default:
       icon = null;

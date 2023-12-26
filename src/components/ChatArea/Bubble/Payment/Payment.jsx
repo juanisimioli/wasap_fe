@@ -1,10 +1,18 @@
 import { ethers } from "ethers";
-import { useStyles } from "./styles";
+import { useWasapContext } from "@/contexts/useWasapContext";
 import { TailIn, TailOut } from "../tails";
 import StatusIcon from "@/components/Utils/StatusIcon/StatusIcon";
+import { STATUS_MESSAGE } from "@/utils/utils";
+import { useStyles } from "./styles";
 
 const Payment = ({ amount, time, status, isSender, isFirstMsgGroup }) => {
   const { classes } = useStyles({ isSender, isFirstMsgGroup });
+  const { resendPayment, contactSelected } = useWasapContext();
+
+  const handleResend = () => {
+    if (status === STATUS_MESSAGE.Rejected)
+      resendPayment(contactSelected, amount);
+  };
 
   return (
     <div className={classes.container}>
@@ -25,7 +33,7 @@ const Payment = ({ amount, time, status, isSender, isFirstMsgGroup }) => {
         <div className={classes.timeStatus}>
           <p className={classes.time}>{time}</p>
           {isSender && (
-            <div className={classes.status}>
+            <div className={classes.status} onClick={handleResend}>
               <StatusIcon status={status} />
             </div>
           )}
