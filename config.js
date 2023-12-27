@@ -13,4 +13,11 @@ export const wasapContractAddress = {
   11155111: "0x250C098a74F39641fd4e7E9F566B40597Ac34335",
 };
 
-export const PAYMENTS_ENABLED = true;
+export const SMART_CONTRACT_VERSION_FEATURES = {
+  1: {
+    PAYMENTS_ENABLED: false,
+  },
+  2: {
+    PAYMENTS_ENABLED: true,
+  },
+};

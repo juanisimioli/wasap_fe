@@ -7,6 +7,7 @@ WasapContext.displayName = "WasapContext";
 
 export const WasapContextProvider = ({ children }) => {
   const {
+    smartContractVersion,
     isUserRegistered,
     userInfo,
     contactList,
@@ -38,6 +39,7 @@ export const WasapContextProvider = ({ children }) => {
   } = useWasap();
 
   const value = {
+    smartContractVersion,
     isUserRegistered,
     userInfo,
     contactList,

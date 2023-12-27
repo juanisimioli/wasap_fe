@@ -8,7 +8,7 @@ import { calculateChat, JsDateToEpoch, playNotification } from "@/utils/utils";
 import { wasapContractAddress } from "../../config";
 import { STATUS_MESSAGE } from "@/utils/utils";
 import Wasap from "../../contract/Wasap.json";
-import { PAYMENTS_ENABLED } from "../../config";
+import { SMART_CONTRACT_VERSION_FEATURES } from "../../config";
 
 const useWasap = () => {
   const { signer } = useProviderAndSigner();
@@ -21,6 +21,7 @@ const useWasap = () => {
   const { handleOpenToast } = useToast();
 
   const [contract, setContract] = useState(null);
+  const [smartContractVersion, setSmartContractVersion] = useState(null);
 
   // USER INFORMATION
   const [isUserRegistered, setIsUserRegistered] = useState(null);
@@ -56,6 +57,15 @@ const useWasap = () => {
   ///////////////////////  getters  //////////////////////////
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
+
+  const getSmartContractVersion = async () => {
+    try {
+      return await contract.VERSION();
+    } catch (e) {
+      handleOpenToast("error", "Problem getting Smart Contract version");
+      console.error(e);
+    }
+  };
 
   const checkUserExists = async (address) => {
     try {
@@ -94,7 +104,7 @@ const useWasap = () => {
   };
 
   const readPayments = async (contact) => {
-    if (!PAYMENTS_ENABLED) return;
+    if (!smartContractVersion?.PAYMENTS_ENABLED) return;
     try {
       return await contract.readPayments(contact);
     } catch (e) {
@@ -176,7 +186,7 @@ const useWasap = () => {
   };
 
   const sendPayment = async (contactSelected, amount) => {
-    if (!PAYMENTS_ENABLED) return;
+    if (!smartContractVersion?.PAYMENTS_ENABLED) return;
     const timestamp = JsDateToEpoch() + 59;
     updatePaymentStatusToSending(timestamp, amount);
     setIsSendingPayment(true);
@@ -249,6 +259,11 @@ const useWasap = () => {
   //////////////////////  handlers  //////////////////////////
   ////////////////////////////////////////////////////////////
   ////////////////////////////////////////////////////////////
+
+  const handleSmartContractVersion = async () => {
+    const version = await getSmartContractVersion();
+    setSmartContractVersion(SMART_CONTRACT_VERSION_FEATURES?.[version]);
+  };
 
   const handleCheckUserExistAndUserInfo = async (address) => {
     if (!address) return;
@@ -410,6 +425,7 @@ const useWasap = () => {
 
   useEffect(() => {
     if (!contract || !address || !isAllowedChainId) return;
+    handleSmartContractVersion();
     handleCheckUserExistAndUserInfo(address);
   }, [contract]);
 
@@ -578,6 +594,7 @@ const useWasap = () => {
   }, [contactSelected]);
 
   return {
+    smartContractVersion,
     isUserRegistered,
     userInfo,
     contactList,

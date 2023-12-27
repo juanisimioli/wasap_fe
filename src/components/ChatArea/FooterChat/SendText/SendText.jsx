@@ -4,12 +4,12 @@ import { Send } from "@mui/icons-material/";
 import { EtherIcon } from "../SendPayment/etherIcon";
 import Input from "@/components/Utils/Input/Input";
 import { useStyles } from "./styles";
-import { PAYMENTS_ENABLED } from "../../../../../config";
 
 const SendText = ({ setIsPaymentInput }) => {
   const { classes } = useStyles();
 
-  const { sendText, isSendingText, contactSelected } = useWasapContext();
+  const { sendText, isSendingText, contactSelected, smartContractVersion } =
+    useWasapContext();
 
   const [value, setValue] = useState("");
 
@@ -52,7 +52,7 @@ const SendText = ({ setIsPaymentInput }) => {
         onKeyDown={handleKeyDown}
         triggerFocus={contactSelected}
       />
-      {Boolean(value.length) || !PAYMENTS_ENABLED ? (
+      {Boolean(value.length) || !smartContractVersion?.PAYMENTS_ENABLED ? (
         <Send className={classes.iconSendText} onClick={handleClickSend} />
       ) : (
         <div
