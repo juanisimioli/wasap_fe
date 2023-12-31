@@ -15,8 +15,8 @@ This dApp is developed for educational & learning purposes.
 > ```diff
 > + TRY IT sending me a message using sepolia testnet to my address:
 > + 0x86B6181C7Ad521817191097F383748BCb4D62594
-> + [www.wasap.net.ar](https://www.wasap.net.ar)
 > ```
+> [www.wasap.net.ar](https://www.wasap.net.ar)
 
 <br/>
 
