@@ -9,6 +9,7 @@ const useStyles = makeStyles()((theme) => ({
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
+    padding: 50,
   },
 
   content: {
