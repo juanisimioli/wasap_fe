@@ -8,6 +8,7 @@ const useStyles = makeStyles()((theme) => ({
     position: "absolute",
     bottom: 14,
     minWidth: 400,
+    padding: 50,
 
     "& svg": {
       color: theme.palette.gray,
