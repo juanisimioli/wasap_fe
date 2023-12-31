@@ -34,6 +34,7 @@ const useStyles = makeStyles()((theme, { isSender, isFirstMsgGroup }) => ({
     fontWeight: 400,
     padding: 0,
     margin: 0,
+    overflowWrap: "anywhere",
   },
 
   time: {
