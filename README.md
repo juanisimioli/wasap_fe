@@ -16,6 +16,7 @@ This dApp is developed for educational & learning purposes.
 > + TRY IT sending me a message using sepolia testnet to my address:
 > + 0x86B6181C7Ad521817191097F383748BCb4D62594
 > ```
+>
 > [www.wasap.net.ar](https://www.wasap.net.ar)
 
 <br/>
@@ -70,7 +71,7 @@ To integrate the Hardhat network with your front-end application, you need to ma
 
 5. Optionally, you can provide a name for the network (e.g., "Hardhat Network").
 
-6. In the "Chain ID" field, enter `1337` for the Hardhat network.
+6. In the "Chain ID" field, enter `31337` for the Hardhat network.
 
 7. Click "Save" to add the custom network.
 
