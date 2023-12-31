@@ -60,7 +60,7 @@ const useWasap = () => {
 
   const getSmartContractVersion = async () => {
     try {
-      return await contract.VERSION();
+      return await contract.getVersion();
     } catch (e) {
       handleOpenToast("error", "Problem getting Smart Contract version");
       console.error(e);

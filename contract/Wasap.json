@@ -171,15 +171,15 @@
     },
     {
       "inputs": [],
-      "name": "VERSION",
+      "name": "getVersion",
       "outputs": [
         {
-          "internalType": "uint8",
+          "internalType": "uint256",
           "name": "",
-          "type": "uint8"
+          "type": "uint256"
         }
       ],
-      "stateMutability": "view",
+      "stateMutability": "pure",
       "type": "function"
     },
     {
