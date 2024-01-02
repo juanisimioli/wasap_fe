@@ -2,18 +2,31 @@
 
 # Wasap Front End
 
-Hello! I'm Juanisimioli, a frontend developer venturing into the blockchain ecosystem. I'm practicing by building decentralized applications (dapps) from scratch using NextJS 14 + Ethers 6.9 + Hardhat 2.19 + Solidity 0.8.18.
+Hello! I'm Juanisimioli, a frontend developer venturing into the blockchain ecosystem. I'm practicing by building decentralized applications (dapps) from scratch using NextJS 14 + Ethers 6.9 + Hardhat 2.19 + Solidity 0.8.20.
 
 ## Overview
 
-Step into the future of messaging with our current chat app version deployed in December 2023 – a groundbreaking platform seamlessly integrating blockchain and conversation. Avatars are securely stored on the InterPlanetary File System (IPFS).
+### Upgradeable Smart Contracts:
 
-It's important to note that the current version lacks the proxy pattern, a feature I will be working on in January 2024. Once implemented, this enhancement will enable continuous updates and new features, including the highly anticipated ability for users to seamlessly send money to contacts directly within the application. Join me in shaping the next era of decentralized communication!
+Tackling the challenge of adaptability, this dApp employs upgradable smart contracts with a proxy contract architecture. After an upgrade, all states, including users and messages, remain intact. The transition is seamless, and the only addition to the smart contract is functionality, ensuring transparency in the upgrade process. With two versions available, Version 1 enables text messages, while Version 2 introduces the capability to send and receive Ether. Developers can seamlessly deploy Version 1, use it, and subsequently deploy Version 2, all while maintaining the same smart contract address.
+
+### Security with OpenZeppelin Defender:
+
+Addressing security challenges, smart contract upgradability is ensured through OpenZeppelin. OpenZeppelin Defender adds an extra layer of security by incorporating a multisignature wallet. This feature requires multiple approvals before deploying updates, enhancing the overall security posture.
+
+### IPFS-Hosted Images:
+
+Avatars from users within the application are securely hosted on IPFS (Interplanetary File System), ensuring decentralized and reliable access.
+
+### Interactive Messaging with Event Management:
+
+Engage in dynamic messaging within the application, encompassing both text and payment exchanges.
+Smart contract events play a pivotal role in managing the status of message transmission and reception, creating an immersive and lifelike chat application experience.
 
 This dApp is developed for educational & learning purposes.
 
 > ```diff
-> + TRY IT sending me a message using sepolia testnet to my address:
+> + Test Wasap on the Sepolia testnet by sending a message to my address:
 > + 0x86B6181C7Ad521817191097F383748BCb4D62594
 > ```
 >
@@ -81,7 +94,7 @@ Now, your MetaMask is configured to connect to the Hardhat network, allowing you
 
 I would love to hear from you! Whether you have questions, feedback, or just want to connect, please don't hesitate to reach out via email at [juanisimioli@gmail.com](mailto:juanisimioli@gmail.com) or connect with me on [LinkedIn](https://www.linkedin.com/in/juanisimioli/). Learning together in this community is a wonderful experience, and I'm always open to feedback and collaboration.
 
-## Wasap Demo
+## Wasap Video Demo
 
 (in progress)
 
